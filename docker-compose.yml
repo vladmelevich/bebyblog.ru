@@ -13,6 +13,10 @@ services:
       - "3306:3306"
     restart: unless-stopped
     command: --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
 
   # Redis для кэширования и WebSocket
   redis:
@@ -36,8 +40,10 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - db
-      - redis
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
     restart: unless-stopped
     command: >
       sh -c "python manage.py migrate &&
