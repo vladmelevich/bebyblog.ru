@@ -182,7 +182,7 @@ const CategoryPage = () => {
         return;
       }
       
-      const response = await fetch(`http://localhost:8000/api/posts/?category=${apiCategorySlug}`);
+      const response = await fetch(`/api/posts/?category=${apiCategorySlug}`);
       
       if (response.ok) {
         const data = await response.json();
