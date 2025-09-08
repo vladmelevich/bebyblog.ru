@@ -1,4 +1,4 @@
-# Этап сборки
+# Этап сборки (оптимизированный)
 FROM node:18-alpine as build
 
 WORKDIR /app
@@ -6,17 +6,17 @@ WORKDIR /app
 # Копируем package.json и package-lock.json
 COPY package*.json ./
 
-# Устанавливаем зависимости
-RUN npm ci --omit=dev
+# Устанавливаем зависимости (оптимизированно)
+RUN npm ci --omit=dev --prefer-offline --no-audit --no-fund
 
 # Копируем исходный код
 COPY src ./src
 COPY public ./public
 
-# Собираем приложение
+# Собираем приложение с оптимизацией
 RUN npm run build
 
-# Этап продакшена
+# Этап продакшена (минимальный)
 FROM nginx:alpine
 
 # Копируем собранное приложение
@@ -28,5 +28,5 @@ COPY frontend/nginx.conf /etc/nginx/conf.d/default.conf
 # Открываем порт
 EXPOSE 80
 
-# Запускаем nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Запускаем nginx (оптимизированно)
+CMD ["nginx", "-g", "daemon off;", "-c", "/etc/nginx/nginx.conf"]

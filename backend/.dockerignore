@@ -24,6 +24,7 @@ coverage.xml
 .idea
 *.swp
 *.swo
+*~
 
 # Django
 *.log

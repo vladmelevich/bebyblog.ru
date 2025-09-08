@@ -111,8 +111,8 @@ DATABASES = {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
             'autocommit': True,
         },
-        'CONN_MAX_AGE': 60,  # Переиспользование соединений
-        'CONN_HEALTH_CHECKS': True,  # Проверка здоровья соединений
+        'CONN_MAX_AGE': 300,  # Увеличиваем время переиспользования соединений
+        'CONN_HEALTH_CHECKS': False,  # Отключаем проверки для ускоренияепиши 
     }
 }
 

@@ -1,19 +1,20 @@
 FROM python:3.11-slim
 
-# Устанавливаем системные зависимости
-RUN apt-get update && apt-get install -y \
+# Устанавливаем системные зависимости (оптимизированно)
+RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
-    g++ \
     default-libmysqlclient-dev \
     pkg-config \
-    && rm -rf /var/lib/apt/lists/*
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Устанавливаем рабочую директорию
 WORKDIR /app
 
 # Копируем requirements.txt и устанавливаем зависимости
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
 # Копируем код приложения
 COPY . .
@@ -23,14 +24,8 @@ RUN adduser --disabled-password --gecos '' appuser && \
     chown -R appuser:appuser /app
 USER appuser
 
-# Собираем статические файлы
-RUN python manage.py collectstatic --noinput
-
 # Открываем порт
 EXPOSE 8000
 
-# Создаем директорию для логов
-RUN mkdir -p /app/logs
-
-# Команда запуска
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "3", "--settings", "core.settings_production", "core.wsgi:application"]
+# Команда запуска (оптимизированная)
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "1", "--timeout", "30", "--keep-alive", "2", "--max-requests", "1000", "--max-requests-jitter", "100", "core.wsgi:application"]
