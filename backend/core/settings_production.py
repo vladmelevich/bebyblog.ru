@@ -12,15 +12,20 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'your-very-secret-key-change-this-in-p
 # Разрешенные хосты
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '46.149.70.4,localhost,127.0.0.1').split(',')
 
-# База данных PostgreSQL
+# База данных MySQL
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'kwork_site',
-        'USER': 'kwork_user',
-        'PASSWORD': 'kwork_password_2024',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'my_kwork',
+        'USER': 'root',
+        'PASSWORD': 'Vmelvladmlvh1211',
         'HOST': 'db',
-        'PORT': '5432',
+        'PORT': '3306',
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            'autocommit': True,
+        },
         'CONN_MAX_AGE': 60,
         'CONN_HEALTH_CHECKS': True,
     }
