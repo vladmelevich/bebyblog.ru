@@ -1,0 +1,29 @@
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+.DS_Store
+.vscode
+.idea
+*.swp
+*.swo
+
+# Production
+build
+dist
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Testing
+coverage
+.nyc_output
+
+# Misc
+.git
+.gitignore
+README.md

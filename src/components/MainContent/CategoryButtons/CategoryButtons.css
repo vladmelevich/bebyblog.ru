@@ -1,0 +1,100 @@
+.category-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.category-btn {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.category-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s;
+}
+
+.category-btn:hover::before {
+  left: 100%;
+}
+
+.category-btn:hover {
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+  color: white;
+  border-color: #8b5cf6;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
+}
+
+.category-btn svg {
+  width: 14px;
+  color: #6c757d;
+}
+
+.category-btn:hover svg {
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .category-buttons {
+    gap: 10px;
+  }
+  
+  .category-btn {
+    padding: 9px 18px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .category-buttons {
+    gap: 8px;
+  }
+  
+  .category-btn {
+    padding: 8px 15px;
+    font-size: 12px;
+  }
+  
+  .category-btn svg {
+    width: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .category-buttons {
+    gap: 6px;
+  }
+  
+  .category-btn {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+  
+  .category-btn svg {
+    width: 10px;
+  }
+}

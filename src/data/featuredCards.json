@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "title": "Слушаем и растём: аудиоконтент для малышей и школьников",
+    "color": "blue",
+    "illustration": "audio-content",
+    "type": "large"
+  },
+  {
+    "id": 2,
+    "title": "Секреты спокойного сна: как уложить малыша без слез",
+    "color": "green",
+    "illustration": "school-health",
+    "type": "large"
+  },
+  {
+    "id": 3,
+    "title": "Первый год жизни: важные этапы развития ребенка",
+    "color": "yellow",
+    "illustration": "beach-baby",
+    "type": "small"
+  }
+]

@@ -1,0 +1,178 @@
+.all-posts {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.all-posts-header {
+  margin-bottom: 40px;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+  color: white;
+  border-radius: 12px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.header-text {
+  flex: 1;
+  text-align: left;
+}
+
+.clear-search-btn {
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.clear-search-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.all-posts-header h1 {
+  margin: 0 0 15px 0;
+  font-size: 36px;
+  font-weight: 600;
+  color: white;
+}
+
+.all-posts-header p {
+  margin: 0;
+  font-size: 18px;
+  color: white;
+  opacity: 0.95;
+}
+
+.posts-filters {
+  margin-bottom: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.category-filter {
+  padding: 10px 20px;
+  border: 2px solid #e9ecef;
+  background: white;
+  color: #495057;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.category-filter:hover {
+  border-color: #8b5cf6;
+  color: #8b5cf6;
+  transform: translateY(-2px);
+}
+
+.category-filter.active {
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+.posts-content {
+  min-height: 400px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .all-posts {
+    padding: 10px;
+  }
+  
+  .all-posts-header {
+    padding: 30px 15px;
+    margin-bottom: 30px;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .header-text {
+    text-align: center;
+  }
+  
+  .clear-search-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+  
+  .all-posts-header h1 {
+    font-size: 28px;
+  }
+  
+  .all-posts-header p {
+    font-size: 16px;
+  }
+  
+  .posts-filters {
+    padding: 15px;
+  }
+  
+  .category-filters {
+    gap: 8px;
+  }
+  
+  .category-filter {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}
+
+/* Темная тема */
+.dark-mode .posts-filters {
+  background: #1a1a2e;
+  color: white;
+}
+
+.dark-mode .category-filter {
+  background: #16213e;
+  border-color: #2a2a3e;
+  color: #e9ecef;
+}
+
+.dark-mode .category-filter:hover {
+  border-color: #8b5cf6;
+  color: #8b5cf6;
+}
+
+.dark-mode .category-filter.active {
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+  color: white;
+}
+
+
+
+
+
+

@@ -1,0 +1,660 @@
+.category-page {
+  flex: 1;
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+/* Хлебные крошки */
+.breadcrumbs-container {
+  margin-bottom: 20px;
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #666;
+}
+
+.breadcrumb-link {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.breadcrumb-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.breadcrumb-link.active {
+  color: #e91e63;
+  font-weight: 500;
+  cursor: default;
+}
+
+.breadcrumb-link.active:hover {
+  text-decoration: none;
+  color: #e91e63;
+}
+
+.breadcrumb-separator {
+  margin: 0 8px;
+  color: #999;
+  font-size: 12px;
+}
+
+/* Заголовок категории */
+.category-header {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.category-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.category-icon {
+  color: #e91e63;
+  font-size: 28px;
+}
+
+/* Полезные сервисы */
+.services-section {
+  margin-bottom: 40px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* Слайдер для мобильных устройств */
+.services-slider {
+  display: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.services-slider-track {
+  display: flex;
+  transition: transform 0.3s ease;
+  transform: translateX(0);
+}
+
+.services-slider-slide {
+  min-width: 280px;
+  flex-shrink: 0;
+  margin-right: 20px;
+}
+
+.services-slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.services-slider-btn:hover {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.services-slider-btn.prev {
+  left: 10px;
+}
+
+.services-slider-btn.next {
+  right: 10px;
+}
+
+.services-slider-btn svg {
+  color: #8b5cf6;
+  font-size: 16px;
+}
+
+.services-slider-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.services-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(139, 92, 246, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.services-indicator.active {
+  background: #8b5cf6;
+  transform: scale(1.2);
+}
+
+.service-card {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 15px;
+  padding: 25px;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.15);
+}
+
+.service-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+  color: white;
+  font-size: 24px;
+}
+
+.service-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.service-description {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* Посты */
+.posts-section {
+  margin-top: 40px;
+}
+
+.posts-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Загрузка и ошибки */
+.loading-container,
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  padding: 40px 20px;
+}
+
+.loading {
+  font-size: 18px;
+  color: #6c757d;
+  text-align: center;
+}
+
+.error {
+  text-align: center;
+  max-width: 500px;
+}
+
+.error h2 {
+  color: #dc3545;
+  font-size: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.error p {
+  color: #6c757d;
+  font-size: 16px;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.back-home-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+  color: white;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.back-home-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  color: white;
+  text-decoration: none;
+}
+
+/* Описание категории */
+.category-description {
+  color: #6c757d;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 8px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+}
+
+/* Загрузка постов */
+.posts-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  padding: 40px 20px;
+}
+
+/* Отсутствие постов */
+.no-posts {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.no-posts-icon {
+  font-size: 64px;
+  color: #6c757d;
+  margin-bottom: 24px;
+  opacity: 0.6;
+}
+
+.no-posts h3 {
+  color: #495057;
+  font-size: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.no-posts p {
+  color: #6c757d;
+  font-size: 16px;
+  margin-bottom: 32px;
+  line-height: 1.5;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.create-post-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+  color: white;
+  text-decoration: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.create-post-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  color: white;
+  text-decoration: none;
+}
+
+/* Улучшенные стили для постов */
+.post-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid #e9ecef;
+}
+
+.post-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.author-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.author-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.author-initials {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.author-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.author-name {
+  font-weight: 600;
+  color: #495057;
+  font-size: 16px;
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.post-time,
+.post-location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.post-options {
+  color: #6c757d;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.post-options:hover {
+  background: #f8f9fa;
+  color: #495057;
+}
+
+.post-content {
+  margin-bottom: 20px;
+}
+
+.post-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #212529;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.post-category {
+  display: inline-block;
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.post-text {
+  color: #495057;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.read-more {
+  color: #8b5cf6;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.read-more:hover {
+  color: #a855f7;
+  text-decoration: none;
+}
+
+.post-footer {
+  border-top: 1px solid #e9ecef;
+  padding-top: 16px;
+}
+
+.post-stats {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.post-comments-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #6c757d;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: transparent;
+}
+
+.post-comments-btn:hover {
+  color: #8b5cf6;
+  background: rgba(102, 126, 234, 0.1);
+  transform: translateY(-1px);
+}
+
+.post-comments-btn svg {
+  font-size: 14px;
+}
+
+/* Действия с постом */
+.post-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  border-top: 1px solid #e9ecef;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+  background: #f8f9fa;
+  color: #333;
+}
+
+.like-btn:hover {
+  color: #28a745;
+}
+
+.dislike-btn:hover {
+  color: #dc3545;
+}
+
+.comment-btn:hover {
+  color: #007bff;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .category-page {
+    padding: 20px;
+  }
+  
+  .category-title {
+    font-size: 28px;
+  }
+  
+  .services-grid {
+    display: none;
+  }
+  
+  .services-slider {
+    display: block;
+  }
+  
+  .service-card {
+    padding: 20px;
+  }
+  
+  .post-card {
+    padding: 20px;
+    margin: 0 20px 20px 20px;
+  }
+  
+  .post-title {
+    font-size: 18px;
+  }
+  
+  .post-text {
+    font-size: 15px;
+  }
+  
+  .no-posts {
+    margin: 20px;
+    padding: 40px 20px;
+  }
+  
+  .no-posts-icon {
+    font-size: 48px;
+  }
+  
+  .no-posts h3 {
+    font-size: 20px;
+  }
+  
+  .no-posts p {
+    font-size: 14px;
+  }
+  
+  .post-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .post-card {
+    padding: 16px;
+    margin: 0 16px 16px 16px;
+  }
+  
+  .author-avatar {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .author-initials {
+    font-size: 16px;
+  }
+  
+  .post-title {
+    font-size: 16px;
+  }
+  
+  .post-text {
+    font-size: 14px;
+  }
+  
+  .post-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .post-stats {
+    justify-content: center;
+    gap: 0;
+  }
+  
+  .post-comments-btn {
+    font-size: 13px;
+  }
+}

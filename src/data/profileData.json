@@ -1,0 +1,77 @@
+{
+  "profile": {
+    "id": 1,
+    "username": "marina",
+    "fullName": "Марина Иванова",
+    "avatar": "МИ",
+    "location": "Москва, Россия",
+    "status": "НОВЕНЬКАЯ",
+    "isOnline": true,
+    "joinDate": "25 дней",
+    "pregnancyInfo": {
+      "status": "Жду малыша",
+      "week": "2 неделя"
+    },
+    "statistics": {
+      "posts": 0,
+      "friends": 0,
+      "subscribers": 0
+    },
+    "personalInfo": {
+      "firstName": "Марина",
+      "lastName": "Иванова",
+      "email": "marina@example.com",
+      "status": "pregnant",
+      "city": "Москва",
+      "birthDate": "1990-05-15",
+      "avatar": null
+    },
+    "tabs": [
+      {
+        "id": "posts",
+        "name": "Записи",
+        "isActive": true
+      },
+      {
+        "id": "drafts",
+        "name": "Черновики",
+        "isActive": false
+      },
+      {
+        "id": "activity",
+        "name": "Активность",
+        "isActive": false
+      },
+      {
+        "id": "archive",
+        "name": "Архив",
+        "isActive": false
+      }
+    ],
+    "categories": [
+      "Все категории",
+      "Зачатие",
+      "Беременность",
+      "Всё о детях",
+      "Воспитание, психология"
+    ],
+    "posts": []
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

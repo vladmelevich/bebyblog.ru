@@ -1,0 +1,391 @@
+.auth-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f7f3f0 0%, #e8ddd4 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.auth-container {
+  background: white;
+  border-radius: 20px;
+  padding: 80px 20px;
+  margin: 0px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Кнопка "Назад" */
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #666;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.back-button:hover {
+  color: #8b5cf6;
+}
+
+/* Заголовок */
+.auth-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.auth-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  color: white;
+  font-size: 32px;
+}
+
+.auth-header h1 {
+  margin: 0 0 10px 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+.auth-header p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Форма */
+.auth-form {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Убрали стили для иконок */
+
+.input-wrapper input {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+  box-sizing: border-box;
+}
+
+.input-wrapper input:focus {
+  outline: none;
+  border-color: #8b5cf6;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.input-wrapper input::placeholder {
+  color: #999;
+}
+
+/* Кнопка показа/скрытия пароля */
+.password-toggle {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  padding: 5px;
+  font-size: 14px;
+  transition: color 0.3s ease;
+  z-index: 2;
+  width: 16px;
+  text-align: center;
+}
+
+.password-toggle:hover {
+  color: #8b5cf6;
+}
+
+/* Блок с опциями авторизации */
+.auth-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Запомнить меня */
+.remember-me {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  user-select: none;
+}
+
+.checkbox-input {
+  display: none;
+}
+
+.checkbox-custom {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #e9ecef;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  background: white;
+}
+
+.checkbox-custom svg {
+  font-size: 10px;
+}
+
+.checkbox-label:hover .checkbox-custom {
+  border-color: #8b5cf6;
+}
+
+.checkbox-input:checked + .checkbox-custom {
+  background: #8b5cf6;
+  border-color: #8b5cf6;
+  color: white;
+}
+
+.checkbox-text {
+  font-size: 14px;
+  color: #333;
+}
+
+/* Забыли пароль */
+.forgot-password {
+  text-align: right;
+}
+
+.forgot-password a {
+  color: #8b5cf6;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.forgot-password a:hover {
+  color: #5a6fd8;
+  text-decoration: underline;
+}
+
+/* Чекбокс */
+.checkbox-group {
+  margin-bottom: 20px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.checkbox-label input[type="checkbox"] {
+  display: none;
+}
+
+.checkmark {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e9ecef;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark {
+  background: #8b5cf6;
+  border-color: #8b5cf6;
+  color: white;
+}
+
+/* Кнопка входа */
+.auth-button {
+  width: 100%;
+  padding: 15px;
+  background: white;
+  border: 2px solid #8b5cf6;
+  border-radius: 12px;
+  color: #8b5cf6;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.auth-button:hover:not(:disabled) {
+  background: #8b5cf6;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.auth-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Сообщение об ошибке */
+.error-message {
+  background: #fee;
+  color: #c33;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  border: 1px solid #fcc;
+}
+
+/* Разделитель */
+.auth-divider {
+  text-align: center;
+  margin: 20px 0;
+  position: relative;
+}
+
+.auth-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #e9ecef;
+  transform: translateY(-50%);
+}
+
+.auth-divider span {
+  background: white;
+  padding: 0 15px;
+  color: #666;
+  font-size: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Футер */
+.auth-footer {
+  text-align: center;
+}
+
+.auth-footer p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.register-link {
+  color: #8b5cf6;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.register-link:hover {
+  color: #5a6fd8;
+  text-decoration: underline;
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+  .auth-container {
+    padding: 30px 20px;
+    margin: 10px;
+  }
+  
+  .auth-header h1 {
+    font-size: 20px;
+  }
+  
+  .auth-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+  
+  .input-wrapper input {
+    padding: 12px;
+    font-size: 16px; /* Предотвращает зум на iOS */
+  }
+  
+  .auth-button {
+    padding: 12px;
+    font-size: 16px;
+  }
+  
+  /* Адаптивность для блока опций */
+  .auth-options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .forgot-password {
+    text-align: left;
+    width: 100%;
+  }
+  
+  .remember-me {
+    width: 100%;
+  }
+}

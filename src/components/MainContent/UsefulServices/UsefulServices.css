@@ -1,0 +1,153 @@
+.useful-services {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 25px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.useful-services::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+}
+
+.useful-services h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.service-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.service-item:hover {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  transform: translateX(5px);
+}
+
+.service-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.service-icon.orange {
+  background: #ff9800;
+}
+
+.service-icon.pink {
+  background: #e91e63;
+}
+
+.service-icon.green {
+  background: #4caf50;
+}
+
+.service-icon.purple {
+  background: #9c27b0;
+}
+
+.service-item span {
+  color: #333;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.4;
+  white-space: pre-line;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .useful-services {
+    padding: 25px;
+  }
+  
+  .useful-services h3 {
+    font-size: 19px;
+  }
+  
+  .service-item {
+    padding: 13px;
+    gap: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .useful-services {
+    padding: 20px;
+  }
+  
+  .useful-services h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .service-item {
+    padding: 12px;
+    gap: 12px;
+  }
+  
+  .service-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+  
+  .service-item span {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .useful-services {
+    padding: 15px;
+  }
+  
+  .useful-services h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  
+  .service-item {
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  .service-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+  }
+  
+  .service-item span {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,1179 @@
+.profile-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f7f3f0 0%, #e8ddd4 100%);
+  padding: 20px;
+}
+
+.profile-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Заголовок с кнопкой назад */
+.profile-header {
+  padding: 20px 30px;
+  border-bottom: 1px solid #e0e0e0;
+  background: #f8f9fa;
+}
+
+.btn-back {
+  background: none;
+  border: none;
+  color: #8b5cf6;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: all 0.2s ease;
+}
+
+.btn-back:hover {
+  background: rgba(139, 92, 246, 0.1);
+  transform: translateX(-2px);
+}
+
+/* Секция профиля пользователя */
+.profile-page .user-profile-section {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 40px 30px;
+  background: linear-gradient(135deg, #f7f3f0 0%, #e8ddd4 100%);
+}
+
+.profile-page .user-avatar {
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  border: 6px solid white;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+}
+
+.profile-page .user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.profile-page .avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 36px;
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.profile-page .user-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-page .user-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 8px 0;
+  display: block;
+}
+
+.user-login {
+  color: #8b5cf6;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: #666;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.user-details span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.user-username {
+  color: #8b5cf6;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.profile-page .user-actions {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.profile-page .btn-add-child {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+}
+
+.profile-page .btn-add-child:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Дети пользователя */
+.profile-page .user-children-section {
+  padding: 20px 30px;
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.profile-page .children-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-page .children-title svg {
+  color: #8b5cf6;
+}
+
+.profile-page .children-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.profile-page .child-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 15px;
+  border: 2px solid #e0e0e0;
+  transition: all 0.2s ease;
+  min-width: 200px;
+}
+
+.profile-page .child-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border-color: #8b5cf6;
+}
+
+.profile-page .child-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-page .gender-icon {
+  font-size: 20px;
+}
+
+.profile-page .gender-icon.male {
+  color: #4facfe;
+}
+
+.profile-page .gender-icon.female {
+  color: #f093fb;
+}
+
+.profile-page .child-info {
+  flex: 1;
+}
+
+.profile-page .child-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.profile-page .child-age {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.child-delete-btn {
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  font-size: 14px;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.child-card:hover .child-delete-btn {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.child-delete-btn:hover {
+  background: rgba(255, 0, 0, 0.1);
+  color: #ff4444;
+  transform: scale(1.1);
+}
+
+.child-delete-btn:active {
+  transform: scale(0.95);
+}
+
+/* Подписчики и подписки */
+.user-subscriptions-section {
+  padding: 30px;
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.subscriptions-grid {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.subscription-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 25px 30px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  border: none;
+  transition: all 0.3s ease;
+  min-width: 160px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.subscription-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.subscription-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.subscription-card:hover::before {
+  opacity: 1;
+}
+
+.subscription-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+  color: white;
+  font-size: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.subscription-info {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.subscription-count {
+  font-size: 32px;
+  font-weight: 800;
+  color: #333;
+  margin-bottom: 6px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.subscription-label {
+  font-size: 16px;
+  color: #555;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.clickable {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clickable:hover {
+  opacity: 0.8;
+}
+
+
+
+/* Вкладки */
+.profile-tabs {
+  display: flex;
+  background: #f8f9fa;
+  padding: 5px;
+  border-bottom: 1px solid #e0e0e0;
+  position: relative;
+  z-index: 2;
+  gap: 5px;
+}
+
+.tab {
+  flex: 1;
+  padding: 15px 20px;
+  border: none;
+  background: transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+
+
+.tab:hover:not(.active) {
+  background: #e0e0e0;
+  color: #333;
+}
+
+/* Контент вкладок */
+.tab-content {
+  padding: 20px 30px;
+  min-height: 300px;
+  position: relative;
+  z-index: 2;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #666;
+  font-size: 18px;
+}
+
+.profile-loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white;
+  font-size: 18px;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.profile-error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white;
+  text-align: center;
+}
+
+.profile-error h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.profile-error p {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.empty-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.empty-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 10px 0;
+}
+
+.empty-description {
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+  max-width: 400px;
+  line-height: 1.4;
+}
+
+/* Сетка постов */
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Элемент поста */
+.post-item {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.post-item {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.post-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Заголовок */
+.post-title {
+  margin: 0 0 8px 0;
+  padding-left: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #2c3e50;
+}
+
+.post-title a,
+.post-title-link,
+.clickable-title {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: block;
+  padding: 4px 0;
+  position: relative;
+  z-index: 10;
+  background: none;
+  border: none;
+  font-size: inherit;
+  font-weight: inherit;
+  text-align: left;
+  width: 100%;
+}
+
+.post-title a:hover,
+.post-title-link:hover,
+.clickable-title:hover {
+  color: #333;
+  transform: translateX(2px);
+}
+
+/* Дополнительные стили для кликабельного заголовка */
+.clickable-title {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #2c3e50;
+  margin: 0 0 8px 0;
+  padding-left: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Тег */
+.post-tag {
+  color: #6c757d;
+  font-size: 12px;
+  margin-bottom: 15px;
+  padding-left: 8px;
+  font-weight: 500;
+}
+
+/* Информация об авторе */
+.post-author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.author-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.author-initials {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.author-name {
+  font-weight: 600;
+  color: #495057;
+  font-size: 13px;
+}
+
+.author-location,
+.post-date {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: #868e96;
+}
+
+.author-location svg,
+.post-date svg {
+  font-size: 9px;
+}
+
+.clickable {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Кнопка "Читать дальше" */
+.post-read-more {
+  margin: 15px 0;
+  padding-left: 8px;
+}
+
+.read-more-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 13px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.read-more-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+  color: white;
+  text-decoration: none;
+}
+
+.clickable:hover {
+  opacity: 0.8;
+  transform: scale(1.02);
+}
+
+.author-avatar.clickable:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.author-name.clickable:hover {
+  color: #333;
+}
+
+/* Отрывок текста статьи */
+.post-excerpt {
+  margin: 15px 0;
+  padding: 0;
+}
+
+.post-excerpt p {
+  color: #6c757d;
+  font-size: 17px;
+  line-height: 1.6;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Кнопки действий */
+.post-actions {
+  margin-top: auto;
+  padding-top: 16px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-edit,
+.btn-restore,
+.btn-delete {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  justify-content: center;
+}
+
+.btn-edit {
+  background: #333;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-edit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn-restore {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+}
+
+.btn-restore:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3);
+}
+
+.btn-delete {
+  background: linear-gradient(135deg, #dc3545 0%, #e74c3c 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
+}
+
+.btn-delete:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(220, 53, 69, 0.3);
+}
+
+.btn-archive {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-restore {
+  background: #28a745;
+  color: white;
+}
+
+.btn-delete {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-edit:hover,
+.btn-archive:hover,
+.btn-restore:hover,
+.btn-delete:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .profile-page {
+    padding: 10px;
+  }
+  
+  .profile-container {
+    border-radius: 15px;
+  }
+  
+  .user-profile-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 15px;
+    gap: 20px;
+  }
+  
+  .user-avatar {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .user-avatar img,
+  .avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    font-size: 28px;
+  }
+  
+  .user-name {
+    font-size: 18px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    line-height: 1.2;
+  }
+  
+  .user-details {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 14px;
+    max-width: 100%;
+  }
+  
+  .user-details span {
+    flex-wrap: wrap;
+    word-break: break-word;
+    max-width: 100%;
+    white-space: normal;
+  }
+  
+  .user-actions {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+  }
+  
+  .action-btn {
+    min-width: 120px;
+    justify-content: center;
+    padding: 10px 15px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+  
+  .user-children-section {
+    padding: 20px 15px;
+  }
+  
+  .user-subscriptions-section {
+    padding: 20px 15px;
+  }
+  
+  .subscriptions-grid {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .subscription-card {
+    min-width: auto;
+    width: 100%;
+  }
+  
+  .children-grid {
+    flex-direction: column;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  
+  .child-card {
+    min-width: auto;
+    width: 100%;
+    flex: 1;
+    max-width: 100%;
+  }
+  
+  .user-stats {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 15px;
+  }
+  
+
+  
+  .profile-tabs {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 5px 15px;
+    gap: 5px;
+  }
+  
+  .tab {
+    padding: 12px 15px;
+    font-size: 13px;
+    white-space: nowrap;
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .tab.active {
+    background: transparent;
+    color: #333;
+    z-index: 2;
+  }
+  
+  .tab-content {
+    padding: 15px;
+  }
+  
+  .posts-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .post-item {
+    padding: 15px !important;
+    gap: 12px !important;
+  }
+  
+  .post-title {
+    font-size: 16px !important;
+    word-wrap: break-word;
+    margin-bottom: 6px !important;
+  }
+  
+  .post-tag {
+    font-size: 11px !important;
+    margin-bottom: 12px !important;
+  }
+  
+  .post-author {
+    gap: 8px !important;
+    margin-bottom: 12px !important;
+  }
+  
+  .author-avatar {
+    width: 35px !important;
+    height: 35px !important;
+  }
+  
+  .author-info {
+    gap: 6px;
+  }
+  
+  .author-name {
+    font-size: 12px;
+  }
+  
+  .author-location,
+  .post-date {
+    font-size: 11px;
+  }
+  
+  .post-excerpt p {
+    font-size: 13px;
+    word-wrap: break-word;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+  }
+  
+  .post-read-more {
+    margin-top: 8px;
+  }
+  
+  .read-more-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  .post-actions {
+    justify-content: center;
+    gap: 8px;
+    padding-top: 12px;
+  }
+  
+  .btn-edit,
+  .btn-delete {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-page {
+    padding: 5px;
+  }
+  
+  .profile-container {
+    border-radius: 10px;
+  }
+  
+  .user-profile-section {
+    padding: 15px 10px;
+  }
+  
+  .user-avatar img,
+  .avatar-placeholder {
+    width: 80px;
+    height: 80px;
+    font-size: 24px;
+  }
+  
+  .user-name {
+    font-size: 18px;
+  }
+  
+  .user-details {
+    flex-direction: column;
+    gap: 8px;
+    font-size: 13px;
+  }
+  
+  .user-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .action-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+
+  
+  .user-children-section {
+    padding: 15px 10px;
+  }
+  
+  .user-subscriptions-section {
+    padding: 15px 10px;
+  }
+  
+  .subscription-card {
+    padding: 15px 20px;
+  }
+  
+  .subscription-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+  
+  .subscription-count {
+    font-size: 20px;
+  }
+  
+  .subscription-label {
+    font-size: 12px;
+  }
+  
+  .child-card {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .profile-tabs {
+    flex-direction: column;
+    padding: 5px 10px;
+    gap: 5px;
+  }
+  
+  .tab {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 12px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .tab.active {
+    background: transparent;
+    color: #333;
+    z-index: 2;
+  }
+  
+  .tab-content {
+    padding: 10px;
+  }
+  
+  .post-item {
+    padding: 12px !important;
+    gap: 10px !important;
+  }
+  
+  .post-title {
+    font-size: 15px !important;
+    margin-bottom: 5px !important;
+  }
+  
+  .post-tag {
+    font-size: 10px !important;
+    margin-bottom: 10px !important;
+  }
+  
+  .post-author {
+    gap: 6px !important;
+    margin-bottom: 10px !important;
+  }
+  
+  .author-avatar {
+    width: 30px !important;
+    height: 30px !important;
+  }
+  
+  .author-info {
+    gap: 4px;
+  }
+  
+  .author-name {
+    font-size: 11px;
+  }
+  
+  .author-location,
+  .post-date {
+    font-size: 10px;
+  }
+  
+  .post-excerpt p {
+    font-size: 12px;
+    line-height: 1.3;
+    margin-bottom: 6px;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+  }
+  
+  .post-read-more {
+    margin-top: 6px;
+  }
+  
+  .read-more-btn {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+  
+  .post-actions {
+    gap: 6px;
+    padding-top: 10px;
+  }
+  
+  .btn-edit,
+  .btn-delete {
+    padding: 5px 8px;
+    font-size: 10px;
+  }
+}

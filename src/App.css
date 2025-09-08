@@ -1,0 +1,231 @@
+.App {
+  text-align: left;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f7f3f0 0%, #e8ddd4 100%);
+  overflow-x: hidden;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 18px;
+  color: #3c2415;
+  background: linear-gradient(135deg, #f7f3f0 0%, #e8ddd4 100%);
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%) !important;
+}
+
+.dark-mode .App {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%) !important;
+}
+
+.dark-mode .header {
+  background: rgba(26, 26, 46, 0.95) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark-mode .logo h1 {
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.dark-mode .logo-subtitle {
+  color: #a0a0a0 !important;
+}
+
+.dark-mode .search-bar input {
+  background: rgba(26, 26, 46, 0.9) !important;
+  border-color: rgba(102, 126, 234, 0.3) !important;
+  color: white !important;
+}
+
+.dark-mode .search-bar input::placeholder {
+  color: #a0a0a0 !important;
+}
+
+.dark-mode .search-icon {
+  color: #a0a0a0 !important;
+}
+
+.dark-mode .login-link {
+  color: #a0a0a0 !important;
+}
+
+.dark-mode .login-link:hover {
+  color: #8b5cf6 !important;
+}
+
+.dark-mode .user-profile span {
+  color: #8b5cf6 !important;
+}
+
+.dark-mode .dropdown-menu {
+  background: #1a1a2e !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark-mode .dropdown-header {
+  background: rgba(139, 92, 246, 0.1) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark-mode .dropdown-label {
+  color: #a0a0a0 !important;
+}
+
+.dark-mode .dropdown-username {
+  color: #ffffff !important;
+}
+
+.dark-mode .dropdown-item {
+  color: #ffffff !important;
+  border-bottom-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.dark-mode .dropdown-item:hover {
+  background: rgba(139, 92, 246, 0.1) !important;
+}
+
+.dark-mode .dropdown-item svg {
+  color: #a0a0a0 !important;
+}
+
+.dark-mode .user-profile {
+  background: rgba(102, 126, 234, 0.2) !important;
+  color: #ffffff !important;
+}
+
+.dark-mode .user-profile:hover {
+  background: rgba(102, 126, 234, 0.3) !important;
+}
+
+.dark-mode .dropdown-toggle {
+  background: rgba(102, 126, 234, 0.2) !important;
+  color: #ffffff !important;
+}
+
+.dark-mode .dropdown-toggle:hover {
+  background: rgba(102, 126, 234, 0.3) !important;
+}
+
+.main-container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5px;
+  gap: 10px;
+  overflow: visible;
+  position: relative;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .main-container {
+    padding: 4px;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+    padding: 2px;
+    gap: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-container {
+    padding: 1px;
+    gap: 3px;
+  }
+}
+
+/* Дополнительные стили для темной темы */
+.dark-theme {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%) !important;
+}
+
+.dark-theme .App {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%) !important;
+}
+
+.dark-theme .header {
+  background: rgba(26, 26, 46, 0.95) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark-theme .main-container {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark-theme .sidebar {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.dark-theme .sidebar-item {
+  color: #333 !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+.dark-theme .sidebar-item:hover {
+  background: rgba(139, 92, 246, 0.1) !important;
+  color: #8b5cf6 !important;
+}
+
+.dark-theme .sidebar-item.active {
+  background: rgba(102, 126, 234, 0.2) !important;
+  color: #8b5cf6 !important;
+  font-weight: 600 !important;
+}
+
+.dark-theme .sidebar-item svg {
+  color: #666 !important;
+}
+
+.dark-theme .sidebar-item:hover svg,
+.dark-theme .sidebar-item.active svg {
+  color: #8b5cf6 !important;
+}
+
+.dark-theme .post-card,
+.dark-theme .post-item {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  color: #333 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.dark-theme .post-title {
+  color: #333 !important;
+}
+
+.dark-theme .post-text {
+  color: #666 !important;
+}
+
+.dark-theme .author-name {
+  color: #8b5cf6 !important;
+}
+
+.dark-theme .post-meta {
+  color: #888 !important;
+}
+
+.dark-theme .post-category {
+  background: rgba(139, 92, 246, 0.1) !important;
+  color: #8b5cf6 !important;
+}
+
+.dark-theme .post-date {
+  color: #999 !important;
+}

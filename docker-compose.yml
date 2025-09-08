@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  # PostgreSQL база данных
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: kwork_site
+      POSTGRES_USER: kwork_user
+      POSTGRES_PASSWORD: kwork_password_2024
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  # Redis для кэширования и WebSocket
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  # Backend Django
+  backend:
+    build: ./backend
+    environment:
+      - DEBUG=False
+      - SECRET_KEY=your-secret-key-change-this-in-production
+      - DATABASE_URL=postgresql://kwork_user:kwork_password_2024@db:5432/kwork_site
+      - REDIS_URL=redis://redis:6379/0
+      - ALLOWED_HOSTS=46.149.70.4,localhost,127.0.0.1
+    volumes:
+      - media_files:/app/media
+      - static_files:/app/staticfiles
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+    restart: unless-stopped
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py collectstatic --noinput &&
+             gunicorn --bind 0.0.0.0:8000 --workers 3 core.wsgi:application"
+
+  # Frontend React
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  # Nginx reverse proxy
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/ssl:/etc/nginx/ssl
+      - static_files:/var/www/static
+      - media_files:/var/www/media
+    depends_on:
+      - backend
+      - frontend
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  static_files:
+  media_files:
