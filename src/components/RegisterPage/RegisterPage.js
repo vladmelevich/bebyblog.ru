@@ -152,7 +152,7 @@ const RegisterPage = () => {
       }
 
       // Реальный запрос к API
-      const response = await fetch('http://localhost:8000/api/auth/register/', {
+      const response = await fetch('/api/auth/register/', {
         method: 'POST',
         body: formDataToSend // Отправляем FormData вместо JSON
       });

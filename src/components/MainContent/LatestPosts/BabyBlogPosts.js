@@ -17,7 +17,7 @@ const BebyBlogPosts = ({ limit = 4 }) => {
   const fetchPosts = async () => {
     try {
       setLoading(true);
-      let url = 'http://localhost:8000/api/posts/';
+      let url = '/api/posts/';
       
       if (limit) {
         url += `?page_size=${limit}`;
