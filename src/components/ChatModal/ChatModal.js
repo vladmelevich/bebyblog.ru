@@ -118,7 +118,7 @@ const ChatModal = ({ isOpen, onClose, userId, userName, onChatCreated }) => {
     try {
       console.log('Редактирование сообщения:', { messageId, newContent });
       const response = await makeAuthenticatedRequest(
-        `http://localhost:8000/api/users/async/messages/${messageId}/update/`,
+        `http://46.149.70.4/api/users/async/messages/${messageId}/update/`,
         {
           method: 'PUT',
           headers: {
@@ -154,7 +154,7 @@ const ChatModal = ({ isOpen, onClose, userId, userName, onChatCreated }) => {
   const handleDeleteMessage = async (messageId) => {
     try {
       const response = await makeAuthenticatedRequest(
-        `http://localhost:8000/api/users/async/messages/${messageId}/delete/`,
+        `http://46.149.70.4/api/users/async/messages/${messageId}/delete/`,
         {
           method: 'DELETE'
         }
@@ -191,7 +191,7 @@ const ChatModal = ({ isOpen, onClose, userId, userName, onChatCreated }) => {
   const loadUserData = async () => {
     try {
       const token = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
-      const response = await fetch(`http://localhost:8000/api/users/${userId}/`, {
+      const response = await fetch(`http://46.149.70.4/api/users/${userId}/`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -214,7 +214,7 @@ const ChatModal = ({ isOpen, onClose, userId, userName, onChatCreated }) => {
       console.log('Loading chat messages...');
       
       // Сначала проверяем, есть ли уже чат с этим пользователем
-      const chatResponse = await makeAuthenticatedRequest(`http://localhost:8000/api/users/async/chats/`);
+      const chatResponse = await makeAuthenticatedRequest(`http://46.149.70.4/api/users/async/chats/`);
 
       if (chatResponse.ok) {
         const chatData = await chatResponse.json();
@@ -226,7 +226,7 @@ const ChatModal = ({ isOpen, onClose, userId, userName, onChatCreated }) => {
         if (existingChat) {
           chatIdRef.current = existingChat.id;
           // Загружаем сообщения существующего чата
-          const messagesResponse = await makeAuthenticatedRequest(`http://localhost:8000/api/users/async/chats/${userId}/messages/`);
+          const messagesResponse = await makeAuthenticatedRequest(`http://46.149.70.4/api/users/async/chats/${userId}/messages/`);
           
           if (messagesResponse.ok) {
             const messagesData = await messagesResponse.json();
@@ -260,7 +260,7 @@ const ChatModal = ({ isOpen, onClose, userId, userName, onChatCreated }) => {
     try {
       // Отправляем сообщение через API
       const response = await makeAuthenticatedRequest(
-        `http://localhost:8000/api/users/async/chats/${userId}/messages/create/`,
+        `http://46.149.70.4/api/users/async/chats/${userId}/messages/create/`,
         {
           method: 'POST',
           headers: {

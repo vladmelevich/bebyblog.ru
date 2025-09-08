@@ -47,12 +47,6 @@ services:
       redis:
         condition: service_started
     restart: unless-stopped
-    deploy:
-      resources:
-        limits:
-          memory: 512M
-        reservations:
-          memory: 256M
     command: >
       sh -c "python manage.py migrate --run-syncdb &&
              python manage.py collectstatic --noinput &&
@@ -68,12 +62,6 @@ services:
     depends_on:
       - backend
     restart: unless-stopped
-    deploy:
-      resources:
-        limits:
-          memory: 1G
-        reservations:
-          memory: 512M
 
   # Nginx reverse proxy
   nginx:
@@ -89,12 +77,6 @@ services:
       - backend
       - frontend
     restart: unless-stopped
-    deploy:
-      resources:
-        limits:
-          memory: 128M
-        reservations:
-          memory: 64M
 
 volumes:
   mysql_data:

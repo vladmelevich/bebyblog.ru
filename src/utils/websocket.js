@@ -9,7 +9,7 @@ class WebSocketClient {
 
   connect(userId) {
     this.userId = userId;
-    this.ws = new WebSocket(`ws://localhost:8000/ws/${userId}`);
+    this.ws = new WebSocket(`ws://46.149.70.4/ws/${userId}`);
     
     this.ws.onopen = () => {
       console.log('WebSocket connected');

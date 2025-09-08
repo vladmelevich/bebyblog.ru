@@ -1,23 +1,20 @@
-# Этап сборки (оптимизированный для малой памяти)
+# Этап сборки
 FROM node:18-alpine as build
 
 WORKDIR /app
 
-# Увеличиваем память для Node.js
-ENV NODE_OPTIONS="--max-old-space-size=1024"
-
 # Копируем package.json и package-lock.json
 COPY package*.json ./
 
-# Устанавливаем зависимости (оптимизированно)
-RUN npm ci --omit=dev --prefer-offline --no-audit --no-fund --maxsockets 1
+# Устанавливаем зависимости
+RUN npm ci --omit=dev
 
 # Копируем исходный код
 COPY src ./src
 COPY public ./public
 
-# Собираем приложение с оптимизацией памяти
-RUN npm run build -- --max_old_space_size=1024
+# Собираем приложение
+RUN npm run build
 
 # Этап продакшена (минимальный)
 FROM nginx:alpine

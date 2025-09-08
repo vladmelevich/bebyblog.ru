@@ -101,7 +101,7 @@ const SimpleChat = () => {
 
   const loadUserData = async () => {
     try {
-      const response = await makeAuthenticatedRequest(`http://localhost:8000/users/${userId}/`);
+      const response = await makeAuthenticatedRequest(`http://46.149.70.4/users/${userId}/`);
 
       if (response.ok) {
         const data = await response.json();
@@ -116,7 +116,7 @@ const SimpleChat = () => {
 
   const loadChatMessages = async () => {
     try {
-      const response = await makeAuthenticatedRequest(`http://localhost:8000/api/users/async/chats/${userId}/messages/`);
+      const response = await makeAuthenticatedRequest(`http://46.149.70.4/api/users/async/chats/${userId}/messages/`);
 
       if (response.ok) {
         const data = await response.json();
@@ -141,7 +141,7 @@ const SimpleChat = () => {
       
       // Отправляем сообщение через API
       const response = await makeAuthenticatedRequest(
-        `http://localhost:8000/api/users/async/chats/${userId}/messages/create/`,
+        `http://46.149.70.4/api/users/async/chats/${userId}/messages/create/`,
         {
           method: 'POST',
           headers: {
@@ -210,7 +210,7 @@ const SimpleChat = () => {
   const handleDeleteMessage = async (messageId) => {
     try {
       const response = await makeAuthenticatedRequest(
-        `http://localhost:8000/api/users/async/chats/${userId}/messages/${messageId}/`,
+        `http://46.149.70.4/api/users/async/chats/${userId}/messages/${messageId}/`,
         {
           method: 'DELETE'
         }
@@ -250,7 +250,7 @@ const SimpleChat = () => {
     try {
       console.log('Редактирование сообщения в SimpleChat:', { messageId, newContent });
       const response = await makeAuthenticatedRequest(
-        `http://localhost:8000/api/users/async/messages/${messageId}/update/`,
+        `http://46.149.70.4/api/users/async/messages/${messageId}/update/`,
         {
           method: 'PUT',
           headers: {

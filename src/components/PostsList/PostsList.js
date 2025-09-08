@@ -18,7 +18,7 @@ const PostsList = ({ category = null, limit = null, searchQuery = null }) => {
   const fetchPosts = async () => {
     try {
       setLoading(true);
-      let url = 'http://localhost:8000/api/posts/';
+      let url = 'http://46.149.70.4/api/posts/';
       
       const token = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
       const headers = token ? { 'Authorization': `Bearer ${token}` } : {};

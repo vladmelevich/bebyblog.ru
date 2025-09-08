@@ -105,7 +105,7 @@ const ProfilePage = () => {
       const headers = token ? { 'Authorization': `Bearer ${token}` } : {};
       
       // Получаем данные пользователя с постами и счетчиками подписок
-      const userResponse = await fetch(`http://localhost:8000/api/users/profile-with-posts/${targetUserId}/`, {
+      const userResponse = await fetch(`http://46.149.70.4/api/users/profile-with-posts/${targetUserId}/`, {
         headers: {
           'Content-Type': 'application/json',
           ...headers
@@ -149,7 +149,7 @@ const ProfilePage = () => {
       }
 
       // Получаем посты пользователя
-      const postsResponse = await fetch(`http://localhost:8000/api/posts/?author=${targetUserId}`, {
+      const postsResponse = await fetch(`http://46.149.70.4/api/posts/?author=${targetUserId}`, {
         headers: {
           'Content-Type': 'application/json',
           ...headers
@@ -251,7 +251,7 @@ const ProfilePage = () => {
         return;
       }
 
-      const response = await fetch('http://localhost:8000/api/users/children/', {
+      const response = await fetch('http://46.149.70.4/api/users/children/', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -290,7 +290,7 @@ const ProfilePage = () => {
         return;
       }
 
-      const response = await fetch('http://localhost:8000/api/users/children/', {
+      const response = await fetch('http://46.149.70.4/api/users/children/', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -320,7 +320,7 @@ const ProfilePage = () => {
         return;
       }
 
-      const response = await fetch(`http://localhost:8000/api/users/children/${childId}/`, {
+      const response = await fetch(`http://46.149.70.4/api/users/children/${childId}/`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
