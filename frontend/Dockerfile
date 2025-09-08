@@ -10,7 +10,8 @@ COPY package*.json ./
 RUN npm ci --omit=dev
 
 # Копируем исходный код
-COPY . .
+COPY src ./src
+COPY public ./public
 
 # Собираем приложение
 RUN npm run build
@@ -22,7 +23,7 @@ FROM nginx:alpine
 COPY --from=build /app/build /usr/share/nginx/html
 
 # Копируем конфигурацию nginx
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY frontend/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Открываем порт
 EXPOSE 80
