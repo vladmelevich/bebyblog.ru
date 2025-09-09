@@ -813,6 +813,7 @@ class UserProfileWithPostsView(generics.RetrieveAPIView):
 
 
 # Views для работы с детьми
+@method_decorator(csrf_exempt, name='dispatch')
 class ChildrenListView(generics.ListCreateAPIView):
     """
     Получение списка детей и добавление нового ребенка

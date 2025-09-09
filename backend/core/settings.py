@@ -73,6 +73,14 @@ MIDDLEWARE = [
     'core.middleware.PerformanceMiddleware',
 ]
 
+# Отключаем CSRF для API endpoints
+CSRF_TRUSTED_ORIGINS = [
+    "http://93.183.80.220",
+    "https://93.183.80.220",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
 ROOT_URLCONF = 'core.urls'
 
 TEMPLATES = [
