@@ -79,6 +79,9 @@ const AuthPage = () => {
           birth_date: response.birth_date || null
         };
         
+        console.log('🔍 Полный ответ авторизации:', response);
+        console.log('🔍 Аватар в ответе:', response.avatar);
+        
         console.log('Сохраняемые данные пользователя:', userData);
         console.log('ID пользователя:', response.id);
         

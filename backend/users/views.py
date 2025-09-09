@@ -214,23 +214,12 @@ class FastUserLoginView(generics.GenericAPIView):
                 return Response({
                     'success': True,
                     'message': 'Авторизация успешна',
-                    'id': user.id,
-                    'email': user.email,
-                    'username': user.username,
-                    'first_name': user.first_name,
-                    'last_name': user.last_name,
-                    'name': user.full_name,
-                    'city': user.city,
-                    'avatar': user_data.get('avatar'),  # Используем данные из сериализатора
-                    'date_joined': user.date_joined.isoformat() if user.date_joined else None,
-                    'status': user.status,
-                    'birth_date': user.birth_date.isoformat() if user.birth_date else None,
-                    'user': user_data,
                     'access_token': access_token,
                     'access': access_token,
                     'refresh_token': refresh_token,
                     'refresh': refresh_token,
-                    'execution_time': execution_time
+                    'execution_time': execution_time,
+                    **user_data  # Распаковываем все данные пользователя напрямую
                 })
             else:
                 return Response({

@@ -82,7 +82,8 @@ class UserDetailSerializer(serializers.ModelSerializer):
             if request:
                 data['avatar'] = request.build_absolute_uri(instance.avatar.url)
             else:
-                data['avatar'] = instance.avatar.url
+                # Если нет request, добавляем базовый URL
+                data['avatar'] = f"http://93.183.80.220{instance.avatar.url}"
         return data
 
 
