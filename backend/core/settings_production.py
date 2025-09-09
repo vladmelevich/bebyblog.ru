@@ -31,16 +31,29 @@ DATABASES = {
     }
 }
 
-# Redis для кэширования
-CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': os.environ.get('REDIS_URL', 'redis://redis:6379/0'),
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+# Кэш: используем Redis если доступен пакет django-redis, иначе безопасный фолбэк LocMem
+try:
+    import django_redis  # type: ignore  # noqa: F401
+    CACHES = {
+        'default': {
+            'BACKEND': 'django_redis.cache.RedisCache',
+            'LOCATION': os.environ.get('REDIS_URL', 'redis://redis:6379/0'),
+            'OPTIONS': {
+                'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            }
         }
     }
-}
+except Exception:
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+            'LOCATION': 'prod-fallback',
+            'TIMEOUT': 300,
+            'OPTIONS': {
+                'MAX_ENTRIES': 1000,
+            }
+        }
+    }
 
 # CORS настройки
 CORS_ALLOWED_ORIGINS = [
