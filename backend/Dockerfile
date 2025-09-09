@@ -1,11 +1,12 @@
-FROM python:3.11-alpine
+FROM registry.hub.docker.com/library/python:3.11-slim
 
 # Устанавливаем системные зависимости (оптимизированно)
-RUN apk add --no-cache \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
-    musl-dev \
-    mariadb-dev \
-    pkgconfig
+    default-libmysqlclient-dev \
+    pkg-config \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Устанавливаем рабочую директорию
 WORKDIR /app
