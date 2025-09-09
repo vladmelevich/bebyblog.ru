@@ -38,7 +38,7 @@ const EditPost = () => {
         return;
       }
 
-      const response = await fetch(`http://46.149.70.4/api/posts/${slug}/`, {
+      const response = await fetch(`http://93.183.80.220/api/posts/${slug}/`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ const EditPost = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch('http://46.149.70.4/api/posts/categories/');
+      const response = await fetch('http://93.183.80.220/api/posts/categories/');
       if (response.ok) {
         const categoriesData = await response.json();
         console.log('Загруженные категории:', categoriesData);
@@ -128,7 +128,7 @@ const EditPost = () => {
         status: formData.status
       };
 
-      const response = await fetch(`http://46.149.70.4/api/posts/${slug}/edit/`, {
+      const response = await fetch(`http://93.183.80.220/api/posts/${slug}/edit/`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,

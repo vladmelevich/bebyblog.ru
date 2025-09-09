@@ -26,7 +26,7 @@ const ChatsPage = () => {
       setLoading(true);
       
       // Получаем чаты из API с правильной аутентификацией
-      const response = await makeAuthenticatedRequest('http://46.149.70.4/api/users/async/chats/');
+      const response = await makeAuthenticatedRequest('http://93.183.80.220/api/users/async/chats/');
       
       if (response.ok) {
         const data = await response.json();

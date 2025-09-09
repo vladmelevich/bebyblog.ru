@@ -35,7 +35,7 @@ const ArchivePage = () => {
         return;
       }
 
-      const response = await fetch('http://46.149.70.4/api/users/archive/', {
+      const response = await fetch('http://93.183.80.220/api/users/archive/', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -93,7 +93,7 @@ const ArchivePage = () => {
     if (author.avatar && author.avatar !== 'null' && author.avatar !== '') {
       // Если это относительный путь, добавляем базовый URL
       if (author.avatar.startsWith('/')) {
-        return `http://46.149.70.4${author.avatar}`;
+        return `http://93.183.80.220${author.avatar}`;
       }
       return author.avatar;
     }

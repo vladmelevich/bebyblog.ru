@@ -49,7 +49,7 @@ const UserProfilePage = () => {
       const headers = token ? { 'Authorization': `Bearer ${token}` } : {};
       
       // Получаем данные пользователя с постами и детьми
-      const userUrl = `http://46.149.70.4/api/users/profile-with-posts/${userId}/`;
+      const userUrl = `http://93.183.80.220/api/users/profile-with-posts/${userId}/`;
       
       const userResponse = await fetch(userUrl, {
         headers: {
@@ -93,7 +93,7 @@ const UserProfilePage = () => {
       }
 
       // Получаем только опубликованные посты пользователя
-      const postsUrl = `http://46.149.70.4/api/posts/user/${userId}/published/`;
+      const postsUrl = `http://93.183.80.220/api/posts/user/${userId}/published/`;
       
       const postsResponse = await fetch(postsUrl, {
         headers: {
@@ -122,7 +122,7 @@ const UserProfilePage = () => {
       // Проверяем статус подписки
       if (token) {
         try {
-          const subscriptionResponse = await fetch(`http://46.149.70.4/api/users/check-subscription/${userId}/`, {
+          const subscriptionResponse = await fetch(`http://93.183.80.220/api/users/check-subscription/${userId}/`, {
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json',
@@ -150,7 +150,7 @@ const UserProfilePage = () => {
   const loadChildrenData = async () => {
     try {
       // Получаем детей через API профиля пользователя
-      const response = await fetch(`http://46.149.70.4/api/users/profile-with-posts/${userId}/`, {
+      const response = await fetch(`http://93.183.80.220/api/users/profile-with-posts/${userId}/`, {
         headers: {
           'Content-Type': 'application/json',
         }
@@ -179,7 +179,7 @@ const UserProfilePage = () => {
       
       if (isSubscribed) {
         // Отписка
-        const response = await fetch(`http://46.149.70.4/api/users/unfollow/${userId}/`, {
+        const response = await fetch(`http://93.183.80.220/api/users/unfollow/${userId}/`, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -198,7 +198,7 @@ const UserProfilePage = () => {
         }
       } else {
         // Подписка
-        const response = await fetch(`http://46.149.70.4/api/users/follow/${userId}/`, {
+        const response = await fetch(`http://93.183.80.220/api/users/follow/${userId}/`, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,

@@ -5,7 +5,7 @@ export const getUserInfo = async (userId) => {
   try {
     // Делаем API-запрос для получения реальных данных
     // Используем тот же endpoint, что и в UserProfilePage
-    const response = await fetch(`http://46.149.70.4/api/users/profile-with-posts/${userId}/`, {
+    const response = await fetch(`http://93.183.80.220/api/users/profile-with-posts/${userId}/`, {
       headers: {
         'Content-Type': 'application/json',
       }

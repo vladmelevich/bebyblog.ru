@@ -35,7 +35,7 @@ services:
       - SECRET_KEY=your-secret-key-change-this-in-production
       - DATABASE_URL=mysql://root:Vmelvladmlvh1211@db:3306/my_kwork
       - REDIS_URL=redis://redis:6379/0
-      - ALLOWED_HOSTS=46.149.70.4,localhost,127.0.0.1
+      - ALLOWED_HOSTS=93.183.80.220,localhost,127.0.0.1
     volumes:
       - media_files:/app/media
       - static_files:/app/staticfiles

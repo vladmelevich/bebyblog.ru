@@ -38,7 +38,7 @@ const SubscriptionsModal = ({ isOpen, onClose, type, userId, onUpdate }) => {
       const endpoint = type === 'followers' ? 'followers' : 'following';
       console.log(`Загружаем ${type} с эндпоинта: /api/users/${endpoint}/`);
       
-      const response = await fetch(`http://46.149.70.4/api/users/${endpoint}/`, {
+      const response = await fetch(`http://93.183.80.220/api/users/${endpoint}/`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ const SubscriptionsModal = ({ isOpen, onClose, type, userId, onUpdate }) => {
     try {
       const token = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
       
-      const response = await fetch(`http://46.149.70.4/api/users/follow/${targetUserId}/`, {
+      const response = await fetch(`http://93.183.80.220/api/users/follow/${targetUserId}/`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -101,7 +101,7 @@ const SubscriptionsModal = ({ isOpen, onClose, type, userId, onUpdate }) => {
     try {
       const token = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
       
-      const response = await fetch(`http://46.149.70.4/api/users/unfollow/${targetUserId}/`, {
+      const response = await fetch(`http://93.183.80.220/api/users/unfollow/${targetUserId}/`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

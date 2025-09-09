@@ -39,7 +39,7 @@ const ShareModal = ({ isOpen, onClose, post }) => {
       const token = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
       if (!token) return;
 
-      const response = await fetch('http://46.149.70.4/api/users/friends/', {
+      const response = await fetch('http://93.183.80.220/api/users/friends/', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -62,7 +62,7 @@ const ShareModal = ({ isOpen, onClose, post }) => {
       console.log('Токен:', token ? 'Есть' : 'Нет');
       if (!token || !post) return;
 
-      const response = await fetch(`http://46.149.70.4/api/posts/${post.slug}/archive-status/`, {
+      const response = await fetch(`http://93.183.80.220/api/posts/${post.slug}/archive-status/`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -89,7 +89,7 @@ const ShareModal = ({ isOpen, onClose, post }) => {
       const token = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
       
       const promises = selectedFriends.map(friendId => 
-        fetch('http://46.149.70.4/api/users/send-post/', {
+        fetch('http://93.183.80.220/api/users/send-post/', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -126,7 +126,7 @@ const ShareModal = ({ isOpen, onClose, post }) => {
     try {
       const token = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
       
-      const response = await fetch(`http://46.149.70.4/api/posts/${post.slug}/toggle-archive/`, {
+      const response = await fetch(`http://93.183.80.220/api/posts/${post.slug}/toggle-archive/`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

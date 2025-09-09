@@ -46,7 +46,7 @@ const FriendsPage = () => {
   const fetchNotifications = useCallback(async () => {
     setNotificationsLoading(true);
     try {
-      const response = await makeAuthenticatedRequest('http://46.149.70.4/api/users/notifications/');
+      const response = await makeAuthenticatedRequest('http://93.183.80.220/api/users/notifications/');
       
       if (response.ok) {
         const data = await response.json();
@@ -67,7 +67,7 @@ const FriendsPage = () => {
   const markNotificationAsRead = useCallback(async (notificationId) => {
     try {
       const response = await makeAuthenticatedRequest(
-        `http://46.149.70.4/api/users/notifications/${notificationId}/read/`,
+        `http://93.183.80.220/api/users/notifications/${notificationId}/read/`,
         { method: 'POST' }
       );
       
@@ -84,7 +84,7 @@ const FriendsPage = () => {
   const markAllNotificationsAsRead = useCallback(async () => {
     try {
       const response = await makeAuthenticatedRequest(
-        'http://46.149.70.4/api/users/notifications/mark-all-read/',
+        'http://93.183.80.220/api/users/notifications/mark-all-read/',
         { method: 'POST' }
       );
       
@@ -105,7 +105,7 @@ const FriendsPage = () => {
       // Убираем символ @ если пользователь его ввел
       const cleanQuery = searchQuery.replace('@', '');
       const response = await makeAuthenticatedRequest(
-        `http://46.149.70.4/api/users/search/?q=${encodeURIComponent(cleanQuery)}`
+        `http://93.183.80.220/api/users/search/?q=${encodeURIComponent(cleanQuery)}`
       );
       
       if (response.ok) {
@@ -128,7 +128,7 @@ const FriendsPage = () => {
   const handleFollow = async (userId) => {
     try {
       const response = await makeAuthenticatedRequest(
-        `http://46.149.70.4/api/users/follow/${userId}/`,
+        `http://93.183.80.220/api/users/follow/${userId}/`,
         { method: 'POST' }
       );
       
@@ -145,7 +145,7 @@ const FriendsPage = () => {
   const handleUnfollow = async (userId) => {
     try {
       const response = await makeAuthenticatedRequest(
-        `http://46.149.70.4/api/users/unfollow/${userId}/`,
+        `http://93.183.80.220/api/users/unfollow/${userId}/`,
         { method: 'POST' }
       );
       

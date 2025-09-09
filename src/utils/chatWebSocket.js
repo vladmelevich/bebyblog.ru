@@ -31,7 +31,7 @@ class ChatWebSocket {
     }
 
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const wsUrl = `${protocol}//46.149.70.4/ws/chat/?token=${token}`;
+    const wsUrl = `${protocol}//93.183.80.220/ws/chat/?token=${token}`;
     
     console.log('Attempting to connect to WebSocket:', wsUrl);
     this.socket = new WebSocket(wsUrl);
