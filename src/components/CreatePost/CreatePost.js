@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faEye } from '@fortawesome/free-solid-svg-icons';
 import { apiClient } from '../../utils/api.js';
 import { removeTokens, checkTokenValidity, getUserData, getUserIdFromToken } from '../../utils/auth.js';
+import { getAllCategories } from '../../data/categories.js';
 import './CreatePost.css';
 
 const CreatePost = () => {
@@ -35,30 +36,23 @@ const CreatePost = () => {
 
   const fetchCategories = async () => {
     try {
+      // Сначала пробуем загрузить с сервера
       const data = await apiClient.getCategories();
-      console.log('Полученные данные категорий:', data);
-      // Проверяем, что data является массивом
-      if (Array.isArray(data)) {
+      console.log('Полученные данные категорий с сервера:', data);
+      
+      if (Array.isArray(data) && data.length > 0) {
         setCategories(data);
-      } else if (data.results && Array.isArray(data.results)) {
-        // Если API возвращает объект с полем results
+      } else if (data.results && Array.isArray(data.results) && data.results.length > 0) {
         setCategories(data.results);
       } else {
-        console.error('Неожиданный формат данных категорий:', data);
-        setCategories([]);
+        // Если сервер не вернул категории, используем статические
+        console.log('Сервер не вернул категории, используем статические');
+        setCategories(getAllCategories());
       }
     } catch (error) {
-      console.error('Ошибка загрузки категорий, используем статические:', error);
-      // Используем статические категории как fallback
-      const staticCategories = [
-        { id: 1, name: 'Зачатие' },
-        { id: 2, name: 'Беременность' },
-        { id: 3, name: 'ЭКО-мама' },
-        { id: 4, name: 'Воспитание' },
-        { id: 5, name: 'Всё о детях' },
-        { id: 6, name: 'Полезные статьи' }
-      ];
-      setCategories(staticCategories);
+      console.error('Ошибка загрузки категорий с сервера, используем статические:', error);
+      // Используем статические категории
+      setCategories(getAllCategories());
     }
   };
 
@@ -239,7 +233,7 @@ const CreatePost = () => {
                 <option value="">Выберите категорию</option>
                 {Array.isArray(categories) && categories.map(category => (
                   <option key={category.id} value={category.id}>
-                    {category.name}
+                    {category.icon ? `${category.icon} ${category.name}` : category.name}
                   </option>
                 ))}
               </select>
