@@ -89,6 +89,9 @@ const ProfilePage = () => {
       console.log('🔍 currentUser.id тип:', typeof currentUser.id);
       console.log('🔍 Все ключи объекта:', Object.keys(currentUser));
       console.log('🔍 userId из URL:', userId);
+      console.log('🔍 userId тип:', typeof userId);
+      console.log('🔍 actualUserId:', actualUserId);
+      console.log('🔍 actualUserId тип:', typeof actualUserId);
       
       // Проверяем различные возможные структуры
       if (currentUser.user && currentUser.user.id) {
@@ -115,10 +118,10 @@ const ProfilePage = () => {
       
       // Если userId не определен или это ID текущего пользователя, используем ID текущего пользователя
       let targetUserId = userId;
-      if (!targetUserId) {
+      if (!targetUserId || targetUserId === 'undefined') {
         targetUserId = actualUserId;
         console.log('userId не определен, используем ID текущего пользователя:', targetUserId);
-      } else if (actualUserId == userId) {
+      } else if (actualUserId == userId || actualUserId == parseInt(userId)) {
         targetUserId = actualUserId;
         console.log('Это профиль текущего пользователя:', targetUserId);
       } else {
