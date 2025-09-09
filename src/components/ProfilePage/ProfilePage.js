@@ -60,18 +60,30 @@ const ProfilePage = () => {
     try {
       setLoading(true);
       
-      // Получаем данные текущего пользователя
-      const currentUserData = localStorage.getItem('userData') || sessionStorage.getItem('userData');
+      // Получаем токен
       const token = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
       
-      if (!currentUserData || !token) {
+      if (!token) {
         setError('Пользователь не авторизован');
         setLoading(false);
         navigate('/auth');
         return;
       }
       
-      const currentUser = JSON.parse(currentUserData);
+      // Принудительно получаем свежие данные пользователя из API
+      const userResponse = await fetch(getApiUrl('/users/profile/'), {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      if (!userResponse.ok) {
+        throw new Error('Ошибка получения данных пользователя');
+      }
+      
+      const currentUser = await userResponse.json();
+      console.log('Свежие данные пользователя из API:', currentUser);
       console.log('Текущий пользователь из localStorage:', currentUser);
       console.log('currentUser.id:', currentUser.id);
       console.log('currentUser.id тип:', typeof currentUser.id);

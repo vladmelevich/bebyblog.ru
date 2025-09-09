@@ -22,8 +22,8 @@ COPY . .
 # Создаем пользователя для безопасности
 RUN adduser --disabled-password --gecos '' appuser
 
-# Создаем папки staticfiles и media с правами
-RUN mkdir -p /app/staticfiles /app/media/avatars && \
+# Создаем папки staticfiles, media и logs с правами
+RUN mkdir -p /app/staticfiles /app/media/avatars /app/logs && \
     chown -R appuser:appuser /app
 
 # Переключаемся на пользователя appuser
