@@ -1,3 +1,5 @@
+import { getWsUrl } from '../config/api';
+
 class WebSocketClient {
   constructor() {
     this.ws = null;
@@ -9,7 +11,7 @@ class WebSocketClient {
 
   connect(userId) {
     this.userId = userId;
-    this.ws = new WebSocket(`ws://93.183.80.220/ws/${userId}`);
+    this.ws = new WebSocket(getWsUrl(`/${userId}`));
     
     this.ws.onopen = () => {
       console.log('WebSocket connected');

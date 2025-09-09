@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faEye } from '@fortawesome/free-solid-svg-icons';
 import { apiClient } from '../../utils/api.js';
+import { getApiUrl } from '../../config/api';
 import { removeTokens, checkTokenValidity, getUserData, getUserIdFromToken } from '../../utils/auth.js';
 import SimpleCategories from './SimpleCategories';
 import './CreatePost.css';

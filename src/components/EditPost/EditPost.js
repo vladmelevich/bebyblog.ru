@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './EditPost.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { getApiUrl } from '../../config/api';
 import { 
   faArrowLeft, 
   faSave, 
@@ -38,7 +39,7 @@ const EditPost = () => {
         return;
       }
 
-      const response = await fetch(`http://93.183.80.220/api/posts/${slug}/`, {
+      const response = await fetch(`getApiUrl('')/posts/${slug}/`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -66,7 +67,7 @@ const EditPost = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch('http://93.183.80.220/api/posts/categories/');
+      const response = await fetch('getApiUrl('')/posts/categories/');
       if (response.ok) {
         const categoriesData = await response.json();
         console.log('Загруженные категории:', categoriesData);
@@ -128,7 +129,7 @@ const EditPost = () => {
         status: formData.status
       };
 
-      const response = await fetch(`http://93.183.80.220/api/posts/${slug}/edit/`, {
+      const response = await fetch(`getApiUrl('')/posts/${slug}/edit/`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,

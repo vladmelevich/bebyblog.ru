@@ -10,7 +10,7 @@ DEBUG = False
 SECRET_KEY = os.environ.get('SECRET_KEY', 'your-very-secret-key-change-this-in-production-2024')
 
 # Разрешенные хосты
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '93.183.80.220,localhost,127.0.0.1,example.com,*').split(',')
+ALLOWED_HOSTS = ['*']
 
 # База данных MySQL
 DATABASES = {
@@ -46,7 +46,11 @@ CACHES = {
 CORS_ALLOWED_ORIGINS = [
     "http://93.183.80.220",
     "https://93.183.80.220",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Статические файлы
 STATIC_URL = '/static/'

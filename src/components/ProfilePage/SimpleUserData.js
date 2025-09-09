@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { getApiUrl } from '../../config/api';
 
 const SimpleUserData = () => {
   const [userData, setUserData] = useState({
@@ -31,7 +32,7 @@ const SimpleUserData = () => {
           
           // Пробуем загрузить данные с сервера
           try {
-            const response = await fetch(`http://93.183.80.220/api/users/${parsedUserData.id}/`, {
+                   const response = await fetch(getApiUrl(`/users/${parsedUserData.id}/`), {
               headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',

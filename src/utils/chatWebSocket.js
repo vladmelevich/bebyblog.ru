@@ -1,3 +1,5 @@
+import { getWsUrl } from '../config/api';
+
 class ChatWebSocket {
   constructor() {
     this.socket = null;
@@ -31,7 +33,7 @@ class ChatWebSocket {
     }
 
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const wsUrl = `${protocol}//93.183.80.220/ws/chat/?token=${token}`;
+    const wsUrl = getWsUrl(`/chat/?token=${token}`);
     
     console.log('Attempting to connect to WebSocket:', wsUrl);
     this.socket = new WebSocket(wsUrl);

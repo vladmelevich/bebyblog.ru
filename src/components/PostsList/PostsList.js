@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { getApiUrl } from '../../config/api';
 import { faCalendar, faUser, faPen, faMapMarkerAlt, faUsers, faGlobe } from '@fortawesome/free-solid-svg-icons';
 import './PostsList.css';
 
@@ -18,7 +19,7 @@ const PostsList = ({ category = null, limit = null, searchQuery = null }) => {
   const fetchPosts = async () => {
     try {
       setLoading(true);
-      let url = 'http://93.183.80.220/api/posts/';
+      let url = 'getApiUrl('')/posts/';
       
       const token = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
       const headers = token ? { 'Authorization': `Bearer ${token}` } : {};

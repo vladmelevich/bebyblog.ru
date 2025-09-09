@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import './ProfilePage.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { getApiUrl } from '../../config/api';
 import { 
   faArrowLeft, 
   faPlus, 
@@ -264,7 +265,7 @@ const ProfilePage = () => {
 
       console.log('🔍 Данные запроса:', requestData);
 
-      const response = await fetch('http://93.183.80.220/api/users/children/', {
+      const response = await fetch(getApiUrl('/users/children/'), {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -312,7 +313,7 @@ const ProfilePage = () => {
         return;
       }
 
-      const response = await fetch('http://93.183.80.220/api/users/children/', {
+             const response = await fetch(getApiUrl('/users/children/'), {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
