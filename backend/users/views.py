@@ -548,10 +548,8 @@ class CurrentUserProfileView(generics.RetrieveAPIView):
             user = self.get_object()
             serializer = self.get_serializer(user, context={'request': request})
             
-            return Response({
-                'success': True,
-                'user': serializer.data
-            })
+            # Возвращаем данные пользователя напрямую
+            return Response(serializer.data)
         except Exception as e:
             return Response({
                 'success': False,
@@ -801,10 +799,8 @@ class UserProfileWithPostsView(generics.RetrieveAPIView):
             serializer = self.get_serializer(user, context={'request': request})
             data = serializer.data
             
-            return Response({
-                'success': True,
-                'user': data
-            })
+            # Возвращаем данные пользователя напрямую
+            return Response(data)
         except Exception as e:
             return Response({
                 'success': False,

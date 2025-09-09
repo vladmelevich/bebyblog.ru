@@ -88,15 +88,16 @@ const ProfilePage = () => {
       
       // Извлекаем данные пользователя из ответа API
       let currentUser = null;
-      if (currentUserResponse.success && currentUserResponse.user) {
+      if (currentUserResponse.id) {
+        // Данные пользователя в корне ответа
+        currentUser = currentUserResponse;
+        console.log('✅ Данные пользователя в корне:', currentUser);
+      } else if (currentUserResponse.success && currentUserResponse.user) {
         currentUser = currentUserResponse.user;
         console.log('✅ Данные пользователя из success.user:', currentUser);
       } else if (currentUserResponse.user) {
         currentUser = currentUserResponse.user;
         console.log('✅ Данные пользователя из user:', currentUser);
-      } else if (currentUserResponse.id) {
-        currentUser = currentUserResponse;
-        console.log('✅ Данные пользователя в корне:', currentUser);
       } else {
         console.error('❌ Не удалось извлечь данные пользователя из ответа');
         throw new Error('Неверный формат ответа API');
@@ -170,15 +171,16 @@ const ProfilePage = () => {
         
         // Извлекаем данные пользователя из ответа API
         let userInfo = null;
-        if (userDataResponse.success && userDataResponse.user) {
+        if (userDataResponse.id) {
+          // Данные пользователя в корне ответа
+          userInfo = userDataResponse;
+          console.log('✅ Данные пользователя в корне:', userInfo);
+        } else if (userDataResponse.success && userDataResponse.user) {
           userInfo = userDataResponse.user;
           console.log('✅ Данные пользователя из success.user:', userInfo);
         } else if (userDataResponse.user) {
           userInfo = userDataResponse.user;
           console.log('✅ Данные пользователя из user:', userInfo);
-        } else if (userDataResponse.id) {
-          userInfo = userDataResponse;
-          console.log('✅ Данные пользователя в корне:', userInfo);
         }
         
         console.log('🔍 Извлеченные данные пользователя:', userInfo);
