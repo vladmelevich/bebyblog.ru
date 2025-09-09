@@ -1,12 +1,11 @@
-FROM python:3.11-slim
+FROM python:3.11-alpine
 
 # Устанавливаем системные зависимости (оптимизированно)
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apk add --no-cache \
     gcc \
-    default-libmysqlclient-dev \
-    pkg-config \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    musl-dev \
+    mariadb-dev \
+    pkgconfig
 
 # Устанавливаем рабочую директорию
 WORKDIR /app
