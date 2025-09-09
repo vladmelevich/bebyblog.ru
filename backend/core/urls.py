@@ -30,6 +30,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/health/', health_check, name='health'),
     path('api/test-users/', test_users_api, name='test_users'),
+    path('api/users/children/', test_users_api, name='test_children'),
     path('api/auth/', include('users.urls')),
     path('api/users/', include('users.urls')),
     path('api/posts/', include('posts.urls')),
