@@ -1,13 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faCalendar } from '@fortawesome/free-solid-svg-icons';
 
 const SimpleUserData = () => {
-  console.log('SimpleUserData: компонент загружен');
-  
-  // Получаем данные пользователя из localStorage
-  const currentUserData = localStorage.getItem('userData') || sessionStorage.getItem('userData');
-  let userData = {
+  const [userData, setUserData] = useState({
     id: 1,
     username: 'Пользователь',
     first_name: 'Пользователь',
@@ -19,23 +15,66 @@ const SimpleUserData = () => {
     followers_count: 0,
     following_count: 0,
     posts_count: 0
-  };
-  
-  // Если есть данные пользователя, используем их
-  if (currentUserData) {
-    try {
-      const parsedUserData = JSON.parse(currentUserData);
-      userData = {
-        ...userData,
-        ...parsedUserData,
-        city: parsedUserData.city || 'Москва',
-        date_joined: parsedUserData.date_joined || '2024-01-15T10:30:00Z'
-      };
-      console.log('✅ Используем данные пользователя из localStorage:', userData);
-    } catch (error) {
-      console.error('Ошибка парсинга данных пользователя:', error);
-    }
-  }
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        // Получаем данные пользователя из localStorage
+        const currentUserData = localStorage.getItem('userData') || sessionStorage.getItem('userData');
+        const token = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
+        
+        if (currentUserData && token) {
+          const parsedUserData = JSON.parse(currentUserData);
+          console.log('✅ Данные пользователя из localStorage:', parsedUserData);
+          
+          // Пробуем загрузить данные с сервера
+          try {
+            const response = await fetch(`http://93.183.80.220/api/users/profile/${parsedUserData.id}/`, {
+              headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+              }
+            });
+            
+            if (response.ok) {
+              const serverData = await response.json();
+              console.log('✅ Данные пользователя с сервера:', serverData);
+              setUserData({
+                ...parsedUserData,
+                ...serverData,
+                city: serverData.city || parsedUserData.city || 'Москва',
+                date_joined: serverData.date_joined || parsedUserData.date_joined || '2024-01-15T10:30:00Z'
+              });
+            } else {
+              console.error('Ошибка загрузки данных с сервера:', response.status);
+              // Используем данные из localStorage
+              setUserData({
+                ...parsedUserData,
+                city: parsedUserData.city || 'Москва',
+                date_joined: parsedUserData.date_joined || '2024-01-15T10:30:00Z'
+              });
+            }
+          } catch (error) {
+            console.error('Ошибка при загрузке данных с сервера:', error);
+            // Используем данные из localStorage
+            setUserData({
+              ...parsedUserData,
+              city: parsedUserData.city || 'Москва',
+              date_joined: parsedUserData.date_joined || '2024-01-15T10:30:00Z'
+            });
+          }
+        }
+      } catch (error) {
+        console.error('Ошибка при загрузке данных пользователя:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   const formatDate = (dateString) => {
     if (!dateString) return 'Недавно';
@@ -57,6 +96,16 @@ const SimpleUserData = () => {
     const names = authorName.split(' ');
     return `${names[0]?.charAt(0) || 'П'}${names[1]?.charAt(0) || ''}`.toUpperCase();
   };
+
+  if (loading) {
+    return (
+      <div className="user-profile-section">
+        <div style={{ textAlign: 'center', padding: '20px' }}>
+          Загрузка данных пользователя...
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="user-profile-section">
