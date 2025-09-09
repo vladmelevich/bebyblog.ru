@@ -26,11 +26,23 @@ def health_check(request):
 def test_users_api(request):
     return JsonResponse({'status': 'users_api_working', 'path': request.path})
 
+def test_children_api(request):
+    return JsonResponse({'status': 'children_api_working', 'path': request.path, 'method': request.method})
+
+def test_user_profile_api(request, user_id):
+    return JsonResponse({'status': 'user_profile_working', 'path': request.path, 'user_id': user_id})
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/health/', health_check, name='health'),
     path('api/test-users/', test_users_api, name='test_users'),
-    path('api/users/children/', test_users_api, name='test_children'),
+    
+    # Прямые тестовые маршруты
+    path('api/users/children/', test_children_api, name='test_children'),
+    path('api/users/<int:user_id>/', test_user_profile_api, name='test_user_profile'),
+    path('api/users/profile-with-posts/<int:user_id>/', test_user_profile_api, name='test_user_profile_with_posts'),
+    
+    # Основные маршруты
     path('api/auth/', include('users.urls')),
     path('api/users/', include('users.urls')),
     path('api/posts/', include('posts.urls')),
