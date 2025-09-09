@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест категорий</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        select { padding: 10px; font-size: 16px; width: 300px; }
+        option { padding: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Тест категорий</h1>
+    <label for="category">Категория *</label><br>
+    <select id="category" name="category">
+        <option value="">Выберите категорию</option>
+        <option value="1">🤰 Беременность</option>
+        <option value="2">👶 Роды</option>
+        <option value="3">🍼 Новорожденные</option>
+        <option value="4">🧸 Дети 1-3 года</option>
+        <option value="5">🎨 Дети 3-7 лет</option>
+        <option value="6">📚 Школьники</option>
+        <option value="7">🏥 Здоровье</option>
+        <option value="8">🍎 Питание</option>
+        <option value="9">👨‍👩‍👧‍👦 Воспитание</option>
+        <option value="10">❤️ Семья</option>
+    </select>
+    
+    <script>
+        console.log('Тест категорий загружен');
+        const select = document.getElementById('category');
+        console.log('Select элемент:', select);
+        console.log('Количество опций:', select.options.length);
+        
+        select.addEventListener('change', function() {
+            console.log('Выбрана категория:', this.value, this.options[this.selectedIndex].text);
+        });
+    </script>
+</body>
+</html>
