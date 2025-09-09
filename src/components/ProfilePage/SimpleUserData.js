@@ -45,6 +45,7 @@ const SimpleUserData = () => {
               // Извлекаем данные пользователя из ответа
               const serverData = serverResponse.user || serverResponse;
               console.log('✅ Данные пользователя с сервера:', serverData);
+              console.log('✅ Аватар пользователя:', serverData.avatar);
               
               setUserData({
                 ...parsedUserData,

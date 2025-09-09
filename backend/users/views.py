@@ -207,6 +207,7 @@ class FastUserLoginView(generics.GenericAPIView):
                 
                 # Сериализация пользователя
                 user_serializer = UserDetailSerializer(user, context={'request': request})
+                user_data = user_serializer.data
                 
                 execution_time = time.time() - start_time
                 
@@ -220,11 +221,11 @@ class FastUserLoginView(generics.GenericAPIView):
                     'last_name': user.last_name,
                     'name': user.full_name,
                     'city': user.city,
-                    'avatar': user.avatar.url if user.avatar else None,
+                    'avatar': user_data.get('avatar'),  # Используем данные из сериализатора
                     'date_joined': user.date_joined.isoformat() if user.date_joined else None,
                     'status': user.status,
                     'birth_date': user.birth_date.isoformat() if user.birth_date else None,
-                    'user': user_serializer.data,
+                    'user': user_data,
                     'access_token': access_token,
                     'access': access_token,
                     'refresh_token': refresh_token,
