@@ -20,8 +20,13 @@ RUN pip install --no-cache-dir --upgrade pip && \
 COPY . .
 
 # Создаем пользователя для безопасности
-RUN adduser --disabled-password --gecos '' appuser && \
+RUN adduser --disabled-password --gecos '' appuser
+
+# Создаем папку staticfiles и даем права
+RUN mkdir -p /app/staticfiles && \
     chown -R appuser:appuser /app
+
+# Переключаемся на пользователя appuser
 USER appuser
 
 # Открываем порт
