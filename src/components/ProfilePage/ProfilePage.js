@@ -118,35 +118,15 @@ const ProfilePage = () => {
       const headers = token ? { 'Authorization': `Bearer ${token}` } : {};
       
       // Получаем данные пользователя с постами и счетчиками подписок
-      const userResponse = await fetch(`http://93.183.80.220/api/users/profile-with-posts/${targetUserId}/`, {
+      const profileWithPostsResponse = await fetch(getApiUrl(`/users/profile-with-posts/${targetUserId}/`), {
         headers: {
           'Content-Type': 'application/json',
           ...headers
         }
       });
       
-      // Устанавливаем статические данные пользователя сразу
-      const staticUserData = {
-        id: targetUserId,
-        username: 'Юлия',
-        first_name: 'Юлия',
-        last_name: 'Мелевич',
-        email: 'yulia@example.com',
-        avatar: null,
-        city: 'Москва',
-        date_joined: '2024-01-15T10:30:00Z',
-        followers_count: 0,
-        following_count: 0,
-        posts_count: 0
-      };
-      
-      console.log('✅ Устанавливаем статические данные пользователя:', staticUserData);
-      setUser(staticUserData);
-      setFollowersCount(0);
-      setFollowingCount(0);
-      
-      if (userResponse.ok) {
-        const userData = await userResponse.json();
+      if (profileWithPostsResponse.ok) {
+        const userData = await profileWithPostsResponse.json();
         console.log('Данные пользователя с сервера:', userData);
         
         // Извлекаем данные пользователя
@@ -157,8 +137,11 @@ const ProfilePage = () => {
           setFollowingCount(userInfo.following_count || 0);
         }
       } else {
-        console.error('Ошибка получения пользователя с сервера:', userResponse.status);
-        // Оставляем статические данные
+        console.error('Ошибка получения пользователя с сервера:', profileWithPostsResponse.status);
+        // Фолбек: используем данные из /users/profile/
+        setUser(currentUser);
+        setFollowersCount(0);
+        setFollowingCount(0);
       }
 
       // Получаем посты пользователя
