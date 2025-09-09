@@ -39,7 +39,7 @@ const EditPost = () => {
         return;
       }
 
-      const response = await fetch(`getApiUrl('')/posts/${slug}/`, {
+      const response = await fetch(getApiUrl(`/posts/${slug}/`), {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ const EditPost = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch('getApiUrl('')/posts/categories/');
+      const response = await fetch(getApiUrl('/posts/categories/'));
       if (response.ok) {
         const categoriesData = await response.json();
         console.log('Загруженные категории:', categoriesData);
@@ -129,7 +129,7 @@ const EditPost = () => {
         status: formData.status
       };
 
-      const response = await fetch(`getApiUrl('')/posts/${slug}/edit/`, {
+      const response = await fetch(getApiUrl(`/posts/${slug}/edit/`), {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,

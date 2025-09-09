@@ -19,7 +19,7 @@ const PostsList = ({ category = null, limit = null, searchQuery = null }) => {
   const fetchPosts = async () => {
     try {
       setLoading(true);
-      let url = 'getApiUrl('')/posts/';
+      let url = getApiUrl('/posts/');
       
       const token = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
       const headers = token ? { 'Authorization': `Bearer ${token}` } : {};

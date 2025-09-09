@@ -59,7 +59,7 @@ const PostDetail = () => {
         headers['Authorization'] = `Bearer ${token}`;
       }
       
-      const response = await fetch(`getApiUrl('')/posts/${slug}/`, {
+      const response = await fetch(getApiUrl(`/posts/${slug}/`), {
         headers: headers
       });
       
@@ -205,7 +205,7 @@ const PostDetail = () => {
       try {
         const token = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
         if (token) {
-          const response = await fetch(`getApiUrl('')/posts/${slug}/comments/`, {
+          const response = await fetch(`getApiUrl('/posts/')${slug}/comments/`, {
             method: 'POST',
             headers: {
               'Authorization': `Bearer ${token}`,
@@ -282,7 +282,7 @@ const PostDetail = () => {
       try {
         const token = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
         if (token) {
-          const response = await fetch(`getApiUrl('')/posts/${slug}/comments/`, {
+          const response = await fetch(`getApiUrl('/posts/')${slug}/comments/`, {
             method: 'POST',
             headers: {
               'Authorization': `Bearer ${token}`,
@@ -337,7 +337,7 @@ const PostDetail = () => {
   const confirmDeletePost = async () => {
     try {
       const token = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
-      const response = await fetch(`getApiUrl('')/posts/${post.slug}/delete/`, {
+      const response = await fetch(`getApiUrl('/posts/')${post.slug}/delete/`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -374,7 +374,7 @@ const PostDetail = () => {
     try {
       const token = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
       if (token) {
-        const response = await fetch(`getApiUrl('')/posts/comments/${commentId}/delete/`, {
+        const response = await fetch(`getApiUrl('/posts/')comments/${commentId}/delete/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`,
