@@ -48,7 +48,7 @@ services:
         condition: service_started
     restart: unless-stopped
     command: >
-      sh -c "mkdir -p /app/staticfiles &&
+      sh -c "mkdir -p /app/staticfiles /app/media/avatars &&
              python manage.py migrate --run-syncdb &&
              python manage.py collectstatic --noinput &&
              gunicorn --bind 0.0.0.0:8000 --workers 1 --timeout 30 --keep-alive 2 --max-requests 1000 core.wsgi:application"
