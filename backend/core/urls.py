@@ -23,9 +23,13 @@ from django.http import JsonResponse
 def health_check(request):
     return JsonResponse({'status': 'healthy'})
 
+def test_users_api(request):
+    return JsonResponse({'status': 'users_api_working', 'path': request.path})
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/health/', health_check, name='health'),
+    path('api/test-users/', test_users_api, name='test_users'),
     path('api/auth/', include('users.urls')),
     path('api/users/', include('users.urls')),
     path('api/posts/', include('posts.urls')),

@@ -52,11 +52,10 @@ urlpatterns = [
     path('logout/', UserLogoutView.as_view(), name='logout'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('me/', user_info_view, name='user_info'),
-    path('profile/', UserDetailView.as_view(), name='user_detail'),
+    path('profile/', CurrentUserProfileView.as_view(), name='current_user_profile'),
     path('performance/', PerformanceMonitorView.as_view(), name='performance'),
     path('<int:pk>/', UserProfileView.as_view(), name='user_profile'),
     path('profile-with-posts/<int:pk>/', UserProfileWithPostsView.as_view(), name='user_profile_with_posts'),
-    path('profile/', CurrentUserProfileView.as_view(), name='current_user_profile'),
 
     
     # API для друзей и подписок
