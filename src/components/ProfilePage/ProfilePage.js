@@ -87,31 +87,31 @@ const ProfilePage = () => {
       console.log('🔍 Структура ответа:', JSON.stringify(currentUserResponse, null, 2));
       
       // Извлекаем данные пользователя из ответа API
-      let currentUser = null;
+      let userData = null;
       if (currentUserResponse.id) {
         // Данные пользователя в корне ответа
-        currentUser = currentUserResponse;
-        console.log('✅ Данные пользователя в корне:', currentUser);
+        userData = currentUserResponse;
+        console.log('✅ Данные пользователя в корне:', userData);
       } else if (currentUserResponse.success && currentUserResponse.user) {
-        currentUser = currentUserResponse.user;
-        console.log('✅ Данные пользователя из success.user:', currentUser);
+        userData = currentUserResponse.user;
+        console.log('✅ Данные пользователя из success.user:', userData);
       } else if (currentUserResponse.user) {
-        currentUser = currentUserResponse.user;
-        console.log('✅ Данные пользователя из user:', currentUser);
+        userData = currentUserResponse.user;
+        console.log('✅ Данные пользователя из user:', userData);
       } else {
         console.error('❌ Не удалось извлечь данные пользователя из ответа');
         throw new Error('Неверный формат ответа API');
       }
       
-      console.log('🔍 currentUser:', currentUser);
-      console.log('🔍 currentUser.id:', currentUser ? currentUser.id : 'null');
-      console.log('🔍 currentUser.id тип:', typeof (currentUser ? currentUser.id : null));
-      console.log('🔍 Все ключи объекта:', currentUser ? Object.keys(currentUser) : 'null');
+      console.log('🔍 userData:', userData);
+      console.log('🔍 userData.id:', userData ? userData.id : 'null');
+      console.log('🔍 userData.id тип:', typeof (userData ? userData.id : null));
+      console.log('🔍 Все ключи объекта:', userData ? Object.keys(userData) : 'null');
       console.log('🔍 userId из URL:', userId);
       console.log('🔍 userId тип:', typeof userId);
       
       // Извлекаем ID пользователя
-      const actualUserId = currentUser ? currentUser.id : null;
+      const actualUserId = userData ? userData.id : null;
       
       console.log('🔍 Извлеченный ID пользователя:', actualUserId);
       
@@ -198,8 +198,8 @@ const ProfilePage = () => {
         } else {
           console.error('❌ Не удалось извлечь данные пользователя из ответа');
           // Используем данные из /users/profile/ как фолбек
-          if (currentUser && currentUser.id) {
-            setUser(currentUser);
+          if (userData && userData.id) {
+            setUser(userData);
             setFollowersCount(0);
             setFollowingCount(0);
           } else {
@@ -222,8 +222,8 @@ const ProfilePage = () => {
       } else {
         console.error('Ошибка получения пользователя с сервера:', profileWithPostsResponse.status);
         // Фолбек: используем данные из /users/profile/
-        if (currentUser && currentUser.id) {
-          setUser(currentUser);
+        if (userData && userData.id) {
+          setUser(userData);
           setFollowersCount(0);
           setFollowingCount(0);
         } else {
