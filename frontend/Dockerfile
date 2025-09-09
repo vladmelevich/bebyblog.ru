@@ -1,5 +1,5 @@
 # Этап сборки
-FROM registry.hub.docker.com/library/node:16-alpine as build
+FROM docker.io/library/node:16-alpine as build
 
 WORKDIR /app
 
@@ -17,7 +17,7 @@ COPY public ./public
 RUN npm run build
 
 # Этап продакшена (минимальный)
-FROM registry.hub.docker.com/library/nginx:1.20-alpine
+FROM docker.io/library/nginx:1.20-alpine
 
 # Копируем собранное приложение
 COPY --from=build /app/build /usr/share/nginx/html
