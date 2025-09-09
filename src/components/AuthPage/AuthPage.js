@@ -68,10 +68,15 @@ const AuthPage = () => {
         const nameParts = response.name?.split(' ') || [];
         const userData = {
           id: response.id,
-          first_name: nameParts[0] || '',
-          last_name: nameParts[1] || '',
+          first_name: response.first_name || nameParts[0] || '',
+          last_name: response.last_name || nameParts[1] || '',
           email: response.email,
-          username: response.name
+          username: response.username || response.name,
+          city: response.city || null,
+          avatar: response.avatar || null,
+          date_joined: response.date_joined || null,
+          status: response.status || null,
+          birth_date: response.birth_date || null
         };
         
         console.log('Сохраняемые данные пользователя:', userData);
