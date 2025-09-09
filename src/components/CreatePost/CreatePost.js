@@ -4,12 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faEye } from '@fortawesome/free-solid-svg-icons';
 import { apiClient } from '../../utils/api.js';
 import { removeTokens, checkTokenValidity, getUserData, getUserIdFromToken } from '../../utils/auth.js';
-import { getAllCategories } from '../../data/categories.js';
+// Категории теперь встроены в JSX - импорт не нужен
 import './CreatePost.css';
 
 const CreatePost = () => {
   const navigate = useNavigate();
-  const [categories, setCategories] = useState([]);
+  // Категории теперь встроены в JSX - состояние не нужно
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
@@ -28,33 +28,13 @@ const CreatePost = () => {
         navigate('/auth');
         return;
       }
-      fetchCategories();
+      // Категории теперь встроены в JSX - загрузка не нужна
     };
     
     checkAuth();
   }, [navigate]);
 
-  const fetchCategories = async () => {
-    // Используем ТОЛЬКО статические категории - не загружаем с сервера
-    const staticCategories = [
-      { id: 1, name: 'Беременность', icon: '🤰' },
-      { id: 2, name: 'Роды', icon: '👶' },
-      { id: 3, name: 'Новорожденные', icon: '🍼' },
-      { id: 4, name: 'Дети 1-3 года', icon: '🧸' },
-      { id: 5, name: 'Дети 3-7 лет', icon: '🎨' },
-      { id: 6, name: 'Школьники', icon: '📚' },
-      { id: 7, name: 'Здоровье', icon: '🏥' },
-      { id: 8, name: 'Питание', icon: '🍎' },
-      { id: 9, name: 'Воспитание', icon: '👨‍👩‍👧‍👦' },
-      { id: 10, name: 'Семья', icon: '❤️' }
-    ];
-    
-    console.log('✅ Устанавливаем статические категории:', staticCategories);
-    setCategories(staticCategories);
-    
-    // НЕ загружаем с сервера - используем только статические данные
-    console.log('🚫 Пропускаем загрузку с сервера - используем статические категории');
-  };
+  // Категории теперь встроены прямо в JSX - функция не нужна
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -231,11 +211,16 @@ const CreatePost = () => {
                 className={errors.category ? 'error' : ''}
               >
                 <option value="">Выберите категорию</option>
-                {Array.isArray(categories) && categories.map(category => (
-                  <option key={category.id} value={category.id}>
-                    {category.icon ? `${category.icon} ${category.name}` : category.name}
-                  </option>
-                ))}
+                <option value="1">🤰 Беременность</option>
+                <option value="2">👶 Роды</option>
+                <option value="3">🍼 Новорожденные</option>
+                <option value="4">🧸 Дети 1-3 года</option>
+                <option value="5">🎨 Дети 3-7 лет</option>
+                <option value="6">📚 Школьники</option>
+                <option value="7">🏥 Здоровье</option>
+                <option value="8">🍎 Питание</option>
+                <option value="9">👨‍👩‍👧‍👦 Воспитание</option>
+                <option value="10">❤️ Семья</option>
               </select>
               {errors.category && <span className="error-message">{errors.category}</span>}
             </div>
