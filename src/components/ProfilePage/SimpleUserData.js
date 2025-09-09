@@ -5,12 +5,14 @@ import { faMapMarkerAlt, faCalendar } from '@fortawesome/free-solid-svg-icons';
 const SimpleUserData = () => {
   console.log('SimpleUserData: компонент загружен');
   
-  const userData = {
+  // Получаем данные пользователя из localStorage
+  const currentUserData = localStorage.getItem('userData') || sessionStorage.getItem('userData');
+  let userData = {
     id: 1,
-    username: 'Юлия',
-    first_name: 'Юлия',
-    last_name: 'Мелевич',
-    email: 'yulia@example.com',
+    username: 'Пользователь',
+    first_name: 'Пользователь',
+    last_name: '',
+    email: 'user@example.com',
     avatar: null,
     city: 'Москва',
     date_joined: '2024-01-15T10:30:00Z',
@@ -18,6 +20,22 @@ const SimpleUserData = () => {
     following_count: 0,
     posts_count: 0
   };
+  
+  // Если есть данные пользователя, используем их
+  if (currentUserData) {
+    try {
+      const parsedUserData = JSON.parse(currentUserData);
+      userData = {
+        ...userData,
+        ...parsedUserData,
+        city: parsedUserData.city || 'Москва',
+        date_joined: parsedUserData.date_joined || '2024-01-15T10:30:00Z'
+      };
+      console.log('✅ Используем данные пользователя из localStorage:', userData);
+    } catch (error) {
+      console.error('Ошибка парсинга данных пользователя:', error);
+    }
+  }
 
   const formatDate = (dateString) => {
     if (!dateString) return 'Недавно';
@@ -35,9 +53,9 @@ const SimpleUserData = () => {
   };
 
   const getAuthorInitials = (authorName) => {
-    if (!authorName) return 'Ю';
+    if (!authorName) return 'П';
     const names = authorName.split(' ');
-    return `${names[0]?.charAt(0) || 'Ю'}${names[1]?.charAt(0) || ''}`.toUpperCase();
+    return `${names[0]?.charAt(0) || 'П'}${names[1]?.charAt(0) || ''}`.toUpperCase();
   };
 
   return (
@@ -60,7 +78,7 @@ const SimpleUserData = () => {
       </div>
       <div className="user-info">
         <h1 className="user-name">{userData.first_name || userData.username || 'Пользователь'}</h1>
-        <div className="user-login">@{userData.username}</div>
+        <div className="user-login">@{userData.username || 'user'}</div>
         <div className="user-details">
           <span className="user-location">
             <FontAwesomeIcon icon={faMapMarkerAlt} />
