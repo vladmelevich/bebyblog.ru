@@ -31,7 +31,7 @@ const SimpleUserData = () => {
           
           // Пробуем загрузить данные с сервера
           try {
-            const response = await fetch(`http://93.183.80.220/api/users/profile/${parsedUserData.id}/`, {
+            const response = await fetch(`http://93.183.80.220/api/users/${parsedUserData.id}/`, {
               headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
@@ -39,8 +39,13 @@ const SimpleUserData = () => {
             });
             
             if (response.ok) {
-              const serverData = await response.json();
+              const serverResponse = await response.json();
+              console.log('✅ Ответ сервера:', serverResponse);
+              
+              // Извлекаем данные пользователя из ответа
+              const serverData = serverResponse.user || serverResponse;
               console.log('✅ Данные пользователя с сервера:', serverData);
+              
               setUserData({
                 ...parsedUserData,
                 ...serverData,
