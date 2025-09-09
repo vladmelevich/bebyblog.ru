@@ -634,30 +634,9 @@ const ProfilePage = () => {
               <img 
                 src={user.avatar.startsWith('http') ? user.avatar : `http://93.183.80.220${user.avatar}`}
                 alt={user.first_name}
-                style={{
-                  width: '80px',
-                  height: '80px',
-                  borderRadius: '50%',
-                  objectFit: 'cover',
-                  border: '2px solid white',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-                }}
               />
             ) : (
-              <div className="avatar-placeholder" style={{
-                display: 'flex',
-                width: '80px',
-                height: '80px',
-                borderRadius: '50%',
-                backgroundColor: '#8B5CF6',
-                color: 'white',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '32px',
-                fontWeight: 'bold',
-                border: '2px solid white',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-              }}>
+              <div className="avatar-placeholder">
                 {user?.first_name ? user.first_name.charAt(0).toUpperCase() : 'П'}
               </div>
             )}
