@@ -818,7 +818,7 @@ class ChildrenListView(generics.ListCreateAPIView):
     Получение списка детей и добавление нового ребенка
     """
     serializer_class = ChildSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
     
     def get_queryset(self):
         return Child.objects.filter(user=self.request.user)

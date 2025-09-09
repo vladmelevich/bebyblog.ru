@@ -23,7 +23,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import AddChildModal from './AddChildModal';
 import SubscriptionsModal from './SubscriptionsModal';
-import SimpleUserData from './SimpleUserData';
 
 const ProfilePage = () => {
   const { userId } = useParams();
@@ -520,7 +519,55 @@ const ProfilePage = () => {
         </div>
 
         {/* Информация о пользователе */}
-        <SimpleUserData />
+        <div className="user-profile-section">
+          <div className="user-avatar">
+            {user?.avatar ? (
+              <img 
+                src={user.avatar.startsWith('http') ? user.avatar : `http://93.183.80.220${user.avatar}`}
+                alt={user.first_name}
+                style={{
+                  width: '80px',
+                  height: '80px',
+                  borderRadius: '50%',
+                  objectFit: 'cover',
+                  border: '2px solid white',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                }}
+              />
+            ) : (
+              <div className="avatar-placeholder" style={{
+                display: 'flex',
+                width: '80px',
+                height: '80px',
+                borderRadius: '50%',
+                backgroundColor: '#8B5CF6',
+                color: 'white',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '32px',
+                fontWeight: 'bold',
+                border: '2px solid white',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+              }}>
+                {user?.first_name ? user.first_name.charAt(0).toUpperCase() : 'П'}
+              </div>
+            )}
+          </div>
+          <div className="user-info">
+            <h1 className="user-name">{user?.first_name || 'Пользователь'}</h1>
+            <div className="user-login">@{user?.username || 'user'}</div>
+            <div className="user-details">
+              <span className="user-location">
+                <FontAwesomeIcon icon={faMapMarkerAlt} />
+                {user?.city || 'Не указан'}
+              </span>
+              <span className="user-join-date">
+                <FontAwesomeIcon icon={faCalendar} />
+                {user?.date_joined ? new Date(user.date_joined).toLocaleDateString('ru-RU') : 'Недавно'}
+              </span>
+            </div>
+          </div>
+        </div>
         
         <div className="user-actions">
           <button 
