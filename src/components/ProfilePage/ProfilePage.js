@@ -22,6 +22,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import AddChildModal from './AddChildModal';
 import SubscriptionsModal from './SubscriptionsModal';
+import SimpleUserData from './SimpleUserData';
 
 const ProfilePage = () => {
   const { userId } = useParams();
@@ -521,47 +522,16 @@ const ProfilePage = () => {
         </div>
 
         {/* Информация о пользователе */}
-        <div className="user-profile-section">
-          <div className="user-avatar">
-            {user?.avatar ? (
-              <img 
-                src={user.avatar.startsWith('http') ? user.avatar : `http://93.183.80.220${user.avatar}`} 
-                alt={user.first_name}
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                  e.target.nextSibling.style.display = 'flex';
-                }}
-              />
-            ) : null}
-            <div className="avatar-placeholder" style={{ 
-              display: user?.avatar ? 'none' : 'flex' 
-            }}>
-              {getAuthorInitials(user?.first_name || user?.username)}
-            </div>
-          </div>
-          <div className="user-info">
-            <h1 className="user-name">{user?.first_name || user?.username || 'Пользователь'}</h1>
-            <div className="user-login">@{user?.username}</div>
-            <div className="user-details">
-              <span className="user-location">
-                <FontAwesomeIcon icon={faMapMarkerAlt} />
-                {user?.city || 'Не указан'}
-              </span>
-              <span className="user-join-date">
-                <FontAwesomeIcon icon={faCalendar} />
-                {user?.date_joined ? formatDate(user.date_joined) : 'Недавно'}
-              </span>
-            </div>
-          </div>
-          <div className="user-actions">
-            <button 
-              className="btn-add-child"
-              onClick={() => setShowAddChildModal(true)}
-            >
-              <FontAwesomeIcon icon={faBaby} />
-              Добавить ребенка
-            </button>
-          </div>
+        <SimpleUserData />
+        
+        <div className="user-actions">
+          <button 
+            className="btn-add-child"
+            onClick={() => setShowAddChildModal(true)}
+          >
+            <FontAwesomeIcon icon={faBaby} />
+            Добавить ребенка
+          </button>
         </div>
 
                  {/* Дети пользователя */}
