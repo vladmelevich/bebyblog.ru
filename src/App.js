@@ -59,7 +59,6 @@ function App() {
             <Route path="/auth" element={<AuthPage />} />
             <Route path="/register" element={<RegisterPage />} />
               <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/profile/:userId" element={<ProfilePage />} />
               <Route path="/user/:userId" element={<UserProfilePage />} />
               <Route path="/friends" element={<FriendsPage />} />
               <Route path="/chats" element={<ChatsPage />} />

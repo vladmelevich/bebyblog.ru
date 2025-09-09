@@ -86,7 +86,7 @@ const ChatModal = ({ isOpen, onClose, userId, userName, onChatCreated }) => {
   const handleAvatarClick = (senderId) => {
     // Закрываем модальное окно и переходим на страницу профиля пользователя
     onClose();
-    navigate(`/profile/${senderId}`);
+    navigate(`/user/${senderId}`);
   };
 
 

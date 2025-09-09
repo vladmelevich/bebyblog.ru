@@ -96,7 +96,7 @@ const SimpleChat = () => {
 
   const handleAvatarClick = (senderId) => {
     // Переходим на страницу профиля пользователя
-    navigate(`/profile/${senderId}`);
+    navigate(`/user/${senderId}`);
   };
 
   const loadUserData = async () => {

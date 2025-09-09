@@ -98,7 +98,7 @@ const AuthPage = () => {
         
         // Небольшая задержка для обновления Header, затем перенаправляем на профиль
         setTimeout(() => {
-          navigate(`/profile/${response.id}`);
+          navigate('/profile');
         }, 100);
       } else {
         setError('Не удалось получить токен авторизации');

@@ -84,25 +84,14 @@ const Header = () => {
     navigate('/');
   };
 
-  const getProfileUrl = () => {
-    if (userData && userData.id) {
-      return `/profile/${userData.id}`;
-    }
-    return '/auth';
-  };
 
   const handleProfileClick = () => {
-    if (userData && userData.id) {
-      navigate(`/profile/${userData.id}`);
+    // Всегда переходим на собственный профиль
+    const token = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
+    if (token) {
+      navigate('/profile');
     } else {
-      // Если нет ID, попробуем получить данные пользователя
-      const token = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
-      if (token) {
-        // Перенаправляем на страницу загрузки профиля
-        navigate('/profile');
-      } else {
-        navigate('/auth');
-      }
+      navigate('/auth');
     }
     setShowDropdown(false);
   };

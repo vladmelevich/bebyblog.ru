@@ -189,7 +189,7 @@ const RegisterPage = () => {
         // Небольшая задержка для обновления Header
         setTimeout(() => {
           // Перенаправляем на страницу профиля пользователя
-          navigate(`/profile/${data.user.id}`);
+          navigate('/profile');
         }, 100);
       } else {
         // Ошибка от сервера

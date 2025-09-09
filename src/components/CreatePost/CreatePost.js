@@ -105,7 +105,7 @@ const CreatePost = () => {
           const userData = getUserData();
           const userId = userData?.id || getUserIdFromToken() || 1;
           console.log('Перенаправление на профиль пользователя:', userId);
-          navigate(`/profile/${userId}`);
+          navigate('/profile');
         } else {
           // Если опубликованный пост, перенаправляем на детали поста
           navigate(`/post-detail/${data.post.slug}`);

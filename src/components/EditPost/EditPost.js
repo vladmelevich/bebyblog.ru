@@ -149,7 +149,7 @@ const EditPost = () => {
           // Получаем ID пользователя из токена или данных
           const userData = JSON.parse(localStorage.getItem('userData') || '{}');
           const userId = userData.id || 1;
-          navigate(`/profile/${userId}`);
+          navigate('/profile');
         }
       } else {
         const errorData = await response.json();
