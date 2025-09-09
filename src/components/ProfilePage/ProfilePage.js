@@ -103,23 +103,29 @@ const ProfilePage = () => {
         throw new Error('Неверный формат ответа API');
       }
       
-      console.log('🔍 currentUser.id:', currentUser.id);
-      console.log('🔍 currentUser.id тип:', typeof currentUser.id);
-      console.log('🔍 Все ключи объекта:', Object.keys(currentUser));
+      console.log('🔍 currentUser:', currentUser);
+      console.log('🔍 currentUser.id:', currentUser ? currentUser.id : 'null');
+      console.log('🔍 currentUser.id тип:', typeof (currentUser ? currentUser.id : null));
+      console.log('🔍 Все ключи объекта:', currentUser ? Object.keys(currentUser) : 'null');
       console.log('🔍 userId из URL:', userId);
       console.log('🔍 userId тип:', typeof userId);
       
       // Извлекаем ID пользователя
-      const actualUserId = currentUser.id;
+      const actualUserId = currentUser ? currentUser.id : null;
       
       console.log('🔍 Извлеченный ID пользователя:', actualUserId);
       
       // Если userId не определен или это ID текущего пользователя, используем ID текущего пользователя
       let targetUserId = userId;
       if (!targetUserId || targetUserId === 'undefined') {
-        targetUserId = actualUserId;
-        console.log('userId не определен, используем ID текущего пользователя:', targetUserId);
-      } else if (actualUserId == userId || actualUserId == parseInt(userId)) {
+        if (actualUserId) {
+          targetUserId = actualUserId;
+          console.log('userId не определен, используем ID текущего пользователя:', targetUserId);
+        } else {
+          console.error('❌ Не удалось получить ID пользователя');
+          throw new Error('Не удалось получить ID пользователя');
+        }
+      } else if (actualUserId && (actualUserId == userId || actualUserId == parseInt(userId))) {
         targetUserId = actualUserId;
         console.log('Это профиль текущего пользователя:', targetUserId);
       } else {
