@@ -82,37 +82,34 @@ const ProfilePage = () => {
         throw new Error('Ошибка получения данных пользователя');
       }
       
-      const currentUser = await userResponse.json();
-      console.log('🔍 Свежие данные пользователя из API:', currentUser);
-      console.log('🔍 Структура ответа:', JSON.stringify(currentUser, null, 2));
+      const currentUserResponse = await userResponse.json();
+      console.log('🔍 Свежие данные пользователя из API:', currentUserResponse);
+      console.log('🔍 Структура ответа:', JSON.stringify(currentUserResponse, null, 2));
+      
+      // Извлекаем данные пользователя из ответа API
+      let currentUser = null;
+      if (currentUserResponse.success && currentUserResponse.user) {
+        currentUser = currentUserResponse.user;
+        console.log('✅ Данные пользователя из success.user:', currentUser);
+      } else if (currentUserResponse.user) {
+        currentUser = currentUserResponse.user;
+        console.log('✅ Данные пользователя из user:', currentUser);
+      } else if (currentUserResponse.id) {
+        currentUser = currentUserResponse;
+        console.log('✅ Данные пользователя в корне:', currentUser);
+      } else {
+        console.error('❌ Не удалось извлечь данные пользователя из ответа');
+        throw new Error('Неверный формат ответа API');
+      }
+      
       console.log('🔍 currentUser.id:', currentUser.id);
       console.log('🔍 currentUser.id тип:', typeof currentUser.id);
       console.log('🔍 Все ключи объекта:', Object.keys(currentUser));
       console.log('🔍 userId из URL:', userId);
       console.log('🔍 userId тип:', typeof userId);
-      console.log('🔍 actualUserId:', actualUserId);
-      console.log('🔍 actualUserId тип:', typeof actualUserId);
       
-      // Проверяем различные возможные структуры
-      if (currentUser.user && currentUser.user.id) {
-        console.log('✅ Найден currentUser.user.id:', currentUser.user.id);
-      }
-      if (currentUser.data && currentUser.data.id) {
-        console.log('✅ Найден currentUser.data.id:', currentUser.data.id);
-      }
-      if (currentUser.results && currentUser.results[0] && currentUser.results[0].id) {
-        console.log('✅ Найден currentUser.results[0].id:', currentUser.results[0].id);
-      }
-      
-      // Извлекаем ID пользователя из различных возможных структур
-      let actualUserId = currentUser.id;
-      if (!actualUserId && currentUser.user && currentUser.user.id) {
-        actualUserId = currentUser.user.id;
-      } else if (!actualUserId && currentUser.data && currentUser.data.id) {
-        actualUserId = currentUser.data.id;
-      } else if (!actualUserId && currentUser.results && currentUser.results[0] && currentUser.results[0].id) {
-        actualUserId = currentUser.results[0].id;
-      }
+      // Извлекаем ID пользователя
+      const actualUserId = currentUser.id;
       
       console.log('🔍 Извлеченный ID пользователя:', actualUserId);
       
@@ -168,17 +165,20 @@ const ProfilePage = () => {
       });
       
       if (profileWithPostsResponse.ok) {
-        const userData = await profileWithPostsResponse.json();
-        console.log('Данные пользователя с сервера:', userData);
+        const userDataResponse = await profileWithPostsResponse.json();
+        console.log('Данные пользователя с сервера:', userDataResponse);
         
-        // Извлекаем данные пользователя из различных возможных структур
-        let userInfo = userData.user || userData;
-        if (!userInfo || !userInfo.id) {
-          if (userData.data && userData.data.id) {
-            userInfo = userData.data;
-          } else if (userData.results && userData.results[0] && userData.results[0].id) {
-            userInfo = userData.results[0];
-          }
+        // Извлекаем данные пользователя из ответа API
+        let userInfo = null;
+        if (userDataResponse.success && userDataResponse.user) {
+          userInfo = userDataResponse.user;
+          console.log('✅ Данные пользователя из success.user:', userInfo);
+        } else if (userDataResponse.user) {
+          userInfo = userDataResponse.user;
+          console.log('✅ Данные пользователя из user:', userInfo);
+        } else if (userDataResponse.id) {
+          userInfo = userDataResponse;
+          console.log('✅ Данные пользователя в корне:', userInfo);
         }
         
         console.log('🔍 Извлеченные данные пользователя:', userInfo);
@@ -189,37 +189,35 @@ const ProfilePage = () => {
           setFollowingCount(userInfo.following_count || 0);
         } else {
           console.error('❌ Не удалось извлечь данные пользователя из ответа');
-          // Фолбек на статические данные для демонстрации
-          const fallbackUser = {
-            id: targetUserId || 1,
-            first_name: 'Пользователь',
-            username: 'user',
-            city: 'Москва',
-            date_joined: new Date().toISOString(),
-            avatar: null,
-            followers_count: 0,
-            following_count: 0
-          };
-          setUser(fallbackUser);
-          setFollowersCount(0);
-          setFollowingCount(0);
+          // Используем данные из /users/profile/ как фолбек
+          if (currentUser && currentUser.id) {
+            setUser(currentUser);
+            setFollowersCount(0);
+            setFollowingCount(0);
+          } else {
+            // Финальный фолбек на статические данные
+            const fallbackUser = {
+              id: targetUserId || 1,
+              first_name: 'Пользователь',
+              username: 'user',
+              city: 'Москва',
+              date_joined: new Date().toISOString(),
+              avatar: null,
+              followers_count: 0,
+              following_count: 0
+            };
+            setUser(fallbackUser);
+            setFollowersCount(0);
+            setFollowingCount(0);
+          }
         }
       } else {
         console.error('Ошибка получения пользователя с сервера:', profileWithPostsResponse.status);
         // Фолбек: используем данные из /users/profile/
-        let fallbackUser = currentUser;
-        if (!fallbackUser || !fallbackUser.id) {
-          if (currentUser.user && currentUser.user.id) {
-            fallbackUser = currentUser.user;
-          } else if (currentUser.data && currentUser.data.id) {
-            fallbackUser = currentUser.data;
-          }
-        }
-        
-        if (fallbackUser && fallbackUser.id) {
-          setUser(fallbackUser);
-          setFollowersCount(fallbackUser.followers_count || 0);
-          setFollowingCount(fallbackUser.following_count || 0);
+        if (currentUser && currentUser.id) {
+          setUser(currentUser);
+          setFollowersCount(0);
+          setFollowingCount(0);
         } else {
           console.error('❌ Не удалось использовать фолбек данные');
           // Финальный фолбек на статические данные
