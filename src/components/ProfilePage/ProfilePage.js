@@ -249,8 +249,20 @@ const ProfilePage = () => {
       
       if (!token) {
         console.error('Токен не найден');
+        alert('Ошибка авторизации. Войдите в систему заново.');
         return;
       }
+
+      console.log('🔍 Данные для отправки:', childData);
+      console.log('🔍 Токен:', token ? 'Есть' : 'Нет');
+
+      const requestData = {
+        name: childData.name,
+        gender: childData.gender,
+        birth_date: childData.birthDate
+      };
+
+      console.log('🔍 Данные запроса:', requestData);
 
       const response = await fetch('http://93.183.80.220/api/users/children/', {
         method: 'POST',
@@ -258,27 +270,35 @@ const ProfilePage = () => {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          name: childData.name,
-          gender: childData.gender,
-          birth_date: childData.birthDate
-        })
+        body: JSON.stringify(requestData)
       });
+
+      console.log('🔍 Статус ответа:', response.status);
+      console.log('🔍 Заголовки ответа:', response.headers);
 
       if (response.ok) {
         const data = await response.json();
-        console.log('Ребенок успешно добавлен:', data);
+        console.log('✅ Ребенок успешно добавлен:', data);
         
         // Обновляем список детей
         fetchChildrenData();
+        alert('Ребенок успешно добавлен!');
       } else {
-        const errorData = await response.json();
-        console.error('Ошибка добавления ребенка:', errorData);
-        alert('Ошибка при добавлении ребенка. Попробуйте еще раз.');
+        const errorText = await response.text();
+        console.error('❌ Ошибка добавления ребенка:', response.status, errorText);
+        
+        try {
+          const errorData = JSON.parse(errorText);
+          console.error('❌ Детали ошибки:', errorData);
+          alert(`Ошибка при добавлении ребенка: ${errorData.message || errorText}`);
+        } catch (e) {
+          console.error('❌ Не удалось распарсить ошибку:', e);
+          alert(`Ошибка при добавлении ребенка (${response.status}): ${errorText}`);
+        }
       }
     } catch (error) {
-      console.error('Ошибка при добавлении ребенка:', error);
-      alert('Ошибка при добавлении ребенка. Попробуйте еще раз.');
+      console.error('❌ Ошибка при добавлении ребенка:', error);
+      alert(`Ошибка при добавлении ребенка: ${error.message}`);
     }
   };
 

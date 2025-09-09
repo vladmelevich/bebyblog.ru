@@ -840,13 +840,29 @@ class ChildrenListView(generics.ListCreateAPIView):
     
     def create(self, request, *args, **kwargs):
         try:
+            print(f"🔍 POST /api/users/children/ - Пользователь: {request.user}")
+            print(f"🔍 Данные запроса: {request.data}")
+            
             # Добавляем пользователя к данным
             data = request.data.copy()
             data['user'] = request.user.id
             
+            print(f"🔍 Данные после добавления user: {data}")
+            
             serializer = self.get_serializer(data=data)
-            serializer.is_valid(raise_exception=True)
+            print(f"🔍 Сериализатор создан")
+            
+            if not serializer.is_valid():
+                print(f"❌ Ошибки валидации: {serializer.errors}")
+                return Response({
+                    'success': False,
+                    'message': 'Ошибка валидации данных',
+                    'errors': serializer.errors
+                }, status=400)
+            
+            print(f"🔍 Данные валидны, сохраняем...")
             child = serializer.save(user=request.user)
+            print(f"✅ Ребенок сохранен: {child}")
             
             return Response({
                 'success': True,
@@ -854,6 +870,9 @@ class ChildrenListView(generics.ListCreateAPIView):
                 'child': ChildSerializer(child).data
             }, status=201)
         except Exception as e:
+            print(f"❌ Ошибка при создании ребенка: {str(e)}")
+            import traceback
+            traceback.print_exc()
             return Response({
                 'success': False,
                 'message': str(e)
