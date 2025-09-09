@@ -283,33 +283,12 @@ const ProfilePage = () => {
   };
 
   const fetchChildrenData = async () => {
-    // Устанавливаем статические данные детей сразу
-    const staticChildren = [
-      {
-        id: 1,
-        name: 'Анна',
-        birth_date: '2020-05-15',
-        gender: 'female',
-        avatar: null
-      },
-      {
-        id: 2,
-        name: 'Максим',
-        birth_date: '2018-03-22',
-        gender: 'male',
-        avatar: null
-      }
-    ];
-    
-    console.log('Устанавливаем статические данные детей:', staticChildren);
-    setChildren(staticChildren);
-    
-    // Дополнительно пробуем загрузить с сервера
     try {
       const token = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
       
       if (!token) {
-        console.log('Токен не найден, используем статические данные детей');
+        console.log('Токен не найден, дети не загружены');
+        setChildren([]);
         return;
       }
 
@@ -323,16 +302,14 @@ const ProfilePage = () => {
       if (response.ok) {
         const data = await response.json();
         console.log('Дети загружены с сервера:', data);
-        if (data.children && data.children.length > 0) {
-          setChildren(data.children);
-        }
+        setChildren(data.children || []);
       } else {
         console.error('Ошибка загрузки детей с сервера:', response.status);
-        // Оставляем статические данные
+        setChildren([]);
       }
     } catch (error) {
       console.error('Ошибка при загрузке детей с сервера:', error);
-      // Оставляем статические данные
+      setChildren([]);
     }
   };
 
