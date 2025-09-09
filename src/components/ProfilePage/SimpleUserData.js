@@ -115,8 +115,26 @@ const SimpleUserData = () => {
   return (
     <div className="user-profile-section">
       <div className="user-avatar">
+        {userData.avatar ? (
+          <img 
+            src={userData.avatar.startsWith('http') ? userData.avatar : `http://93.183.80.220${userData.avatar}`} 
+            alt={userData.first_name}
+            style={{
+              width: '80px',
+              height: '80px',
+              borderRadius: '50%',
+              objectFit: 'cover',
+              border: '2px solid white',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+            }}
+            onError={(e) => {
+              e.target.style.display = 'none';
+              e.target.nextSibling.style.display = 'flex';
+            }}
+          />
+        ) : null}
         <div className="avatar-placeholder" style={{ 
-          display: 'flex',
+          display: userData.avatar ? 'none' : 'flex',
           width: '80px',
           height: '80px',
           borderRadius: '50%',
@@ -125,7 +143,9 @@ const SimpleUserData = () => {
           alignItems: 'center',
           justifyContent: 'center',
           fontSize: '32px',
-          fontWeight: 'bold'
+          fontWeight: 'bold',
+          border: '2px solid white',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
         }}>
           {getAuthorInitials(userData.first_name)}
         </div>
