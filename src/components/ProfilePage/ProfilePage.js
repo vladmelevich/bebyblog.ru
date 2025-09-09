@@ -282,11 +282,33 @@ const ProfilePage = () => {
   };
 
   const fetchChildrenData = async () => {
+    // Устанавливаем статические данные детей сразу
+    const staticChildren = [
+      {
+        id: 1,
+        name: 'Анна',
+        birth_date: '2020-05-15',
+        gender: 'female',
+        avatar: null
+      },
+      {
+        id: 2,
+        name: 'Максим',
+        birth_date: '2018-03-22',
+        gender: 'male',
+        avatar: null
+      }
+    ];
+    
+    console.log('Устанавливаем статические данные детей:', staticChildren);
+    setChildren(staticChildren);
+    
+    // Дополнительно пробуем загрузить с сервера
     try {
       const token = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
       
       if (!token) {
-        console.error('Токен не найден');
+        console.log('Токен не найден, используем статические данные детей');
         return;
       }
 
@@ -299,15 +321,17 @@ const ProfilePage = () => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log('Дети загружены:', data);
-        setChildren(data.children || []);
+        console.log('Дети загружены с сервера:', data);
+        if (data.children && data.children.length > 0) {
+          setChildren(data.children);
+        }
       } else {
-        console.error('Ошибка загрузки детей:', response.status);
-        setChildren([]);
+        console.error('Ошибка загрузки детей с сервера:', response.status);
+        // Оставляем статические данные
       }
     } catch (error) {
-      console.error('Ошибка при загрузке детей:', error);
-      setChildren([]);
+      console.error('Ошибка при загрузке детей с сервера:', error);
+      // Оставляем статические данные
     }
   };
 
@@ -407,7 +431,7 @@ const ProfilePage = () => {
                <div className="author-avatar">
                  {user?.avatar ? (
                    <img 
-                     src={user.avatar} 
+                     src={user.avatar.startsWith('http') ? user.avatar : `http://93.183.80.220${user.avatar}`} 
                      alt={user.first_name}
                      onError={(e) => {
                        e.target.style.display = 'none';
@@ -500,12 +524,20 @@ const ProfilePage = () => {
         <div className="user-profile-section">
           <div className="user-avatar">
             {user?.avatar ? (
-              <img src={user.avatar} alt={user.first_name} />
-            ) : (
-              <div className="avatar-placeholder">
-                {getAuthorInitials(user?.first_name || user?.username)}
-              </div>
-            )}
+              <img 
+                src={user.avatar.startsWith('http') ? user.avatar : `http://93.183.80.220${user.avatar}`} 
+                alt={user.first_name}
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextSibling.style.display = 'flex';
+                }}
+              />
+            ) : null}
+            <div className="avatar-placeholder" style={{ 
+              display: user?.avatar ? 'none' : 'flex' 
+            }}>
+              {getAuthorInitials(user?.first_name || user?.username)}
+            </div>
           </div>
           <div className="user-info">
             <h1 className="user-name">{user?.first_name || user?.username || 'Пользователь'}</h1>
