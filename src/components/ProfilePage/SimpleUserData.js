@@ -116,47 +116,68 @@ const SimpleUserData = () => {
 
   return (
     <div className="user-profile-section">
-      <div className="user-avatar">
-        {userData.avatar && userData.avatar !== null && userData.avatar !== '' ? (
-          <img 
-            src={userData.avatar.startsWith('http') ? userData.avatar : `http://93.183.80.220${userData.avatar}`} 
-            alt={userData.first_name}
-            style={{
-              width: '80px',
-              height: '80px',
-              borderRadius: '50%',
-              objectFit: 'cover',
-              border: '2px solid white',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-            }}
-            onError={(e) => {
-              console.log('Ошибка загрузки аватара:', e.target.src);
-              e.target.style.display = 'none';
-              e.target.nextSibling.style.display = 'flex';
-            }}
-            onLoad={() => {
-              console.log('Аватар загружен успешно:', userData.avatar);
-            }}
-          />
-        ) : (
-          <div className="avatar-placeholder" style={{ 
-            display: 'flex',
-            width: '80px',
-            height: '80px',
-            borderRadius: '50%',
-            backgroundColor: '#8B5CF6',
-            color: 'white',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '32px',
-            fontWeight: 'bold',
-            border: '2px solid white',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-          }}>
-            {getAuthorInitials(userData.first_name)}
-          </div>
-        )}
-      </div>
+             <div className="user-avatar" style={{
+               display: 'flex',
+               justifyContent: 'center',
+               alignItems: 'center',
+               marginBottom: '20px'
+             }}>
+               {userData.avatar && userData.avatar !== null && userData.avatar !== '' ? (
+                 <img
+                   src={userData.avatar.startsWith('http') ? userData.avatar : `http://93.183.80.220${userData.avatar}`}
+                   alt={userData.first_name}
+                   style={{
+                     width: '120px',
+                     height: '120px',
+                     borderRadius: '50%',
+                     objectFit: 'cover',
+                     border: '4px solid white',
+                     boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+                     transition: 'transform 0.3s ease',
+                     cursor: 'pointer'
+                   }}
+                   onError={(e) => {
+                     console.log('Ошибка загрузки аватара:', e.target.src);
+                     e.target.style.display = 'none';
+                     e.target.nextSibling.style.display = 'flex';
+                   }}
+                   onLoad={() => {
+                     console.log('Аватар загружен успешно:', userData.avatar);
+                   }}
+                   onMouseEnter={(e) => {
+                     e.target.style.transform = 'scale(1.05)';
+                   }}
+                   onMouseLeave={(e) => {
+                     e.target.style.transform = 'scale(1)';
+                   }}
+                 />
+               ) : (
+                 <div className="avatar-placeholder" style={{
+                   display: 'flex',
+                   width: '120px',
+                   height: '120px',
+                   borderRadius: '50%',
+                   backgroundColor: '#8B5CF6',
+                   color: 'white',
+                   alignItems: 'center',
+                   justifyContent: 'center',
+                   fontSize: '48px',
+                   fontWeight: 'bold',
+                   border: '4px solid white',
+                   boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+                   transition: 'transform 0.3s ease',
+                   cursor: 'pointer'
+                 }}
+                 onMouseEnter={(e) => {
+                   e.target.style.transform = 'scale(1.05)';
+                 }}
+                 onMouseLeave={(e) => {
+                   e.target.style.transform = 'scale(1)';
+                 }}>
+                   {getAuthorInitials(userData.first_name)}
+                 </div>
+               )}
+             </div>
       <div className="user-info">
         <h1 className="user-name">{userData.first_name || userData.username || 'Пользователь'}</h1>
         <div className="user-login">@{userData.username || 'user'}</div>

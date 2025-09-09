@@ -43,10 +43,12 @@
 /* Секция профиля пользователя */
 .profile-page .user-profile-section {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
   padding: 40px 30px;
   background: linear-gradient(135deg, #f7f3f0 0%, #e8ddd4 100%);
+  text-align: center;
 }
 
 .profile-page .user-avatar {
@@ -88,6 +90,8 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .profile-page .user-name {
@@ -109,16 +113,18 @@
 .user-details {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
   color: #666;
-  font-size: 13px;
-  margin-bottom: 10px;
+  font-size: 14px;
+  margin-bottom: 15px;
+  align-items: center;
 }
 
 .user-details span {
   display: flex;
   align-items: center;
   gap: 6px;
+  justify-content: center;
 }
 
 .user-username {
