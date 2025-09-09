@@ -122,14 +122,6 @@ const SimpleUserData = () => {
                  <img
                    src={userData.avatar.startsWith('http') ? userData.avatar : `http://93.183.80.220${userData.avatar}`}
                    alt={userData.first_name}
-                   style={{
-                     width: '80px',
-                     height: '80px',
-                     borderRadius: '50%',
-                     objectFit: 'cover',
-                     border: '2px solid white',
-                     boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-                   }}
                    onError={(e) => {
                      console.log('Ошибка загрузки аватара:', e.target.src);
                      e.target.style.display = 'none';
@@ -140,20 +132,7 @@ const SimpleUserData = () => {
                    }}
                  />
                ) : (
-                 <div className="avatar-placeholder" style={{
-                   display: 'flex',
-                   width: '80px',
-                   height: '80px',
-                   borderRadius: '50%',
-                   backgroundColor: '#8B5CF6',
-                   color: 'white',
-                   alignItems: 'center',
-                   justifyContent: 'center',
-                   fontSize: '32px',
-                   fontWeight: 'bold',
-                   border: '2px solid white',
-                   boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-                 }}>
+                 <div className="avatar-placeholder">
                    {getAuthorInitials(userData.first_name)}
                  </div>
                )}
