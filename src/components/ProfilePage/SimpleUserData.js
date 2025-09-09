@@ -46,6 +46,7 @@ const SimpleUserData = () => {
               const serverData = serverResponse.user || serverResponse;
               console.log('✅ Данные пользователя с сервера:', serverData);
               console.log('✅ Аватар пользователя:', serverData.avatar);
+              console.log('✅ Все поля пользователя:', Object.keys(serverData));
               
               setUserData({
                 ...parsedUserData,
@@ -116,7 +117,7 @@ const SimpleUserData = () => {
   return (
     <div className="user-profile-section">
       <div className="user-avatar">
-        {userData.avatar ? (
+        {userData.avatar && userData.avatar !== null && userData.avatar !== '' ? (
           <img 
             src={userData.avatar.startsWith('http') ? userData.avatar : `http://93.183.80.220${userData.avatar}`} 
             alt={userData.first_name}
@@ -129,27 +130,32 @@ const SimpleUserData = () => {
               boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
             }}
             onError={(e) => {
+              console.log('Ошибка загрузки аватара:', e.target.src);
               e.target.style.display = 'none';
               e.target.nextSibling.style.display = 'flex';
             }}
+            onLoad={() => {
+              console.log('Аватар загружен успешно:', userData.avatar);
+            }}
           />
-        ) : null}
-        <div className="avatar-placeholder" style={{ 
-          display: userData.avatar ? 'none' : 'flex',
-          width: '80px',
-          height: '80px',
-          borderRadius: '50%',
-          backgroundColor: '#8B5CF6',
-          color: 'white',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: '32px',
-          fontWeight: 'bold',
-          border: '2px solid white',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-        }}>
-          {getAuthorInitials(userData.first_name)}
-        </div>
+        ) : (
+          <div className="avatar-placeholder" style={{ 
+            display: 'flex',
+            width: '80px',
+            height: '80px',
+            borderRadius: '50%',
+            backgroundColor: '#8B5CF6',
+            color: 'white',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '32px',
+            fontWeight: 'bold',
+            border: '2px solid white',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+          }}>
+            {getAuthorInitials(userData.first_name)}
+          </div>
+        )}
       </div>
       <div className="user-info">
         <h1 className="user-name">{userData.first_name || userData.username || 'Пользователь'}</h1>
