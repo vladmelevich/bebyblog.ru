@@ -60,6 +60,28 @@ CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:3000",
 ]
 
+# Полностью отключаем CSRF для API
+CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_HTTPONLY = False
+CSRF_USE_SESSIONS = False
+
+# Отключаем CSRF middleware в production
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',  # Отключен для API
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    # Оптимизация производительности
+    'core.middleware.CompressionMiddleware',
+    'core.middleware.CacheMiddleware',
+    'core.middleware.PerformanceMiddleware',
+]
+
 # Статические файлы
 STATIC_URL = '/static/'
 STATIC_ROOT = '/app/staticfiles'
