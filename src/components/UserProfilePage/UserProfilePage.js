@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import ChatModal from '../ChatModal/ChatModal';
 import './UserProfilePage.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { getApiUrl } from '../../config/api';
 import { 
   faArrowLeft, 
   faMapMarkerAlt, 
@@ -49,7 +50,7 @@ const UserProfilePage = () => {
       const headers = token ? { 'Authorization': `Bearer ${token}` } : {};
       
       // Получаем данные пользователя с постами и детьми
-      const userUrl = `http://93.183.80.220/api/users/profile-with-posts/${userId}/`;
+      const userUrl = getApiUrl(`/users/profile-with-posts/${userId}/`);
       
       const userResponse = await fetch(userUrl, {
         headers: {
@@ -60,10 +61,12 @@ const UserProfilePage = () => {
       
       if (userResponse.ok) {
         const userData = await userResponse.json();
+        console.log('📊 Ответ API для профиля пользователя:', userData);
         
         // Проверяем структуру ответа
         if (userData.success && userData.user) {
           const user = userData.user;
+          console.log('✅ Пользователь найден (с success):', user);
           setUser(user);
           
           // Сохраняем данные о детях
@@ -73,13 +76,23 @@ const UserProfilePage = () => {
         } else if (userData.user) {
           // Если нет поля success, но есть user
           const user = userData.user;
+          console.log('✅ Пользователь найден (без success):', user);
           setUser(user);
           
           if (user.children) {
             setChildren(user.children);
           }
+        } else if (userData.id) {
+          // Если данные пользователя находятся прямо в корне ответа
+          console.log('✅ Пользователь найден (в корне):', userData);
+          setUser(userData);
+          
+          if (userData.children) {
+            setChildren(userData.children);
+          }
         } else {
           // Если структура неожиданная
+          console.error('❌ Неожиданная структура данных:', userData);
           setError('Ошибка в структуре данных пользователя');
         }
       } else {
